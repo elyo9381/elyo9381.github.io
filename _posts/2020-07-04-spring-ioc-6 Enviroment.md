@@ -31,7 +31,7 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
     }
   ```
   getActiveProfiles() 메소드는 현재 활성화된 Profile을 return해주는 메소드입니다. 활성화된 Profile이 없으면 공백이 출력됩니다. 아무런 값이 나오지 않습니다.  
-  이때 Profile이 적용되지 않았으니 어떠한 Bean들도 IoCdp 등록이 안되어 있는걸까요? 아닙니다. 바로 Default Profile이란 것이 활성화 되어있습니다.  
+  이때 Profile이 적용되지 않았으니 어떠한 Bean들도 IoC에 등록이 안되어 있는걸까요? 아닙니다. 바로 Default Profile이란 것이 활성화 되어있습니다.  
   getDefaultProfiles()메소드는 어떤 Profile이 활성화된 상태여도 기본적으로 추가되는 Profile이 있다는 의미입니다. DefaultProfile에 들어가는 Bean들은 @Profile 설정이 없는 Bean들이 들어가게됩니다.  
   ex) @Service, @Component, @Repository 등등.. 
 
@@ -49,12 +49,12 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
      }
    }
    ```
-   Bean Configuration class에서 설정하는 방법
+   ⬆ Bean Configuration class에서 설정하는 방법
 
    ```
    Edit Configuration >> VM options >>  -Dspring.profiles.active="test"
    ```
-   Edit Configuration 방법
+   ⬆ Edit Configuration 방법
 
 * ### Property
   Property란 Application의 외부에서 입력한 정보를 이용해 설정값을 변경하는 방법들을 제공하는 기능입니다. 외부에서 제공되는 정보들은 우선순위를 가지고 있고 다름은과 같은것들이 존재합니다.
@@ -86,7 +86,7 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
       boolean acceptProfiles(Profiles profiles);
     }
     ```
-    위에서 보았단 getActiveProfiles(),getDefaultProfiles()메소드가 보입니다. 하지만 Property추가를 위한 메소드는 보이지 않습니다.
+    ⬆ 위에서 보았단 getActiveProfiles(),getDefaultProfiles()메소드가 보입니다. 하지만 Property추가를 위한 메소드는 보이지 않습니다.
     상속받은 PropertyResolver를 살펴보자
 
     ```

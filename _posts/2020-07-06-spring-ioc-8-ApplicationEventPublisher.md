@@ -10,7 +10,7 @@ comments: true
 
 # Spring
 
-## IoC 컨테이너 6부 : ApplicationEventPublisher
+## IoC 컨테이너 8부 : ApplicationEventPublisher
 
 * ### ApplicationEventPublisher 
 
@@ -53,7 +53,6 @@ comments: true
   ```
   그러면 빈으로 등록된 ApplicationListener인터페이스를 상속받는 MyEventHandler가 이벤트를 캐치해서 화면에 뿌려주는 역할을 한다. 
 
-  <이벤트 클래스>
   ```
   public class MyEvent extends ApplicationEvent {
 
@@ -71,25 +70,25 @@ comments: true
     }
   }
   ```
+  ⬆︎ <이벤트 클래스>
 * ### 하지만 4.2 부터는 클래스상속 No
 
-  * 우선 event클래스부터 어떻게 바뀌는지 알아보겠다.
+  * 우선 event클래스부터 어떻게 바뀌는지 알아보겠습니다.
   ```
   public class MyEvent {
+        private int data;
+        private Object source;
 
-    private int data;
-    private Object source;
-
-    public MyEvent(Object source, int data){
-        this.source = source;
-        this.data = data;
-    }
-    public Object getSource(){
-        return source;
-    }
-    public int getData(){
-        return data;
-    }
+        public MyEvent(Object source, int data){
+            this.source = source;
+            this.data = data;
+        }
+        public Object getSource(){
+            return source;
+        }
+        public int getData(){
+            return data;
+        }
   }
   ```
   상속이 사라지고 super를 통해서 Object에 값을주고 불러오는것을 getter와 메소드를 통해서 가능하게 되었다. 
@@ -124,6 +123,7 @@ comments: true
       }
   }
   ```
+  event클래스와 마찬가지로 상속이 사라지고 오버라이딩을 통한 특정 메소드가아닌 일반적인 임의의 메소드를 사용할수있게 되었다.  
   동기적으로 실행되게 할때(순서-우선순위) @Ordered(Orederd.HIGHEST_PRECEDENCE)를 통해서 가능하고  
   비동기적인 이벤트를 주려고 하면 @Async를 사용해서 할수있다. 하지만 @Async애노테이션만 붙인다고 해서 비동기적으로 실행되는건 아니다. 
   main문에서 @EnableAsync 애노테이션을 붙이고 Thread관련 설정을 더해야한다. 
@@ -139,7 +139,7 @@ comments: true
   ```
 
   * #### 애플리케이션 관리 이벤트 
-    스프링이 제공하는 기본 이벤트
+    스프링이 제공하는 기본 이벤트  
     ● ContextRefreshedEvent: ApplicationContext를 초기화 했더나 리프래시 했을 때 발생.  
     ● ContextStartedEvent: ApplicationContext를 start()하여 라이프사이클 빈들이 시작신호를 받은 시점에 발생.  
     ● ContextStoppedEvent: ApplicationContext를 stop()하여 라이프사이클 빈들이 정지신호를 받은 시점에 발생.  

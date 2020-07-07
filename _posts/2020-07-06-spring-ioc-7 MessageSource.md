@@ -10,7 +10,7 @@ comments: true
 
 # Spring
 
-## IoC 컨테이너 6부 : MessageSource
+## IoC 컨테이너 7부 : MessageSource
 
 * ### MessageSource 
   IoC 컨테이너의 기능 MessageSource에 대해서 알아보려고 합니다. MessageSource는 국제화(i18n)기능을 제공하는 인터페이스 입니다.  
@@ -20,9 +20,9 @@ comments: true
 
   ApplicationContext Interface가 상속받고 있는 여러 interface중 messageSource를 상속되어 있습니다. 이것에서 메소드를 확인할수있습니다.
 
-* #### 1.messages.* 파일생성
+* #### 1. messages.* 파일생성
   - messages_ko_KR.properties
-  - messages_en.properties
+  - messages_en.properties  
   위와 같은 파일을 만들어줘서 설정해야합니다. 여기서 default~()메소드 또한 있습니다. 그런데 컴퓨터의 설정에따라 default는 달라질수있습니다 
 
   messages_ko_KR.properties
@@ -37,7 +37,7 @@ comments: true
   ```
 
 
-* #### 2.사용
+* #### 2. 사용
 
 ```
 
@@ -78,6 +78,6 @@ public class Demospring51Application {
         messageSource.setCacheSeconds(3);
         return messageSource;
     }
-}
+  }
 
   ```
