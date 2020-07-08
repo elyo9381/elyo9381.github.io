@@ -51,7 +51,7 @@ comments: true
     ```
     위의 코드에서 @GetMapping부분은 SpringMVC부분이고 나중에 공부하자  
     위의코드 @GetMapping부분은 Event를 받아와서 id를 리턴해주는 코드같다.  
-    @RestController 부분은 EventEditor를 전역 빈으로 설정하면 안되므로 지정된 빈을 설정하려는 부분이다. 
+    @InitBinder 부분은 EventEditor를 전역 빈으로 설정하면 안되므로 지정된 빈을 설정하려는 부분이다. 
 
 
     ```

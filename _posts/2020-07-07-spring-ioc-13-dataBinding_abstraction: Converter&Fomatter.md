@@ -16,7 +16,7 @@ comments: true
 
   스프링 3.0이후 버전부터는 PropertyEditor를 대신하여 Converter 와 Fomatter를 사용한다.
 
-  * Converter
+* Converter
     * S 타입을 T타입으로 변환 할 수 있는 매우 일반적인 변환기
     * 상태정보 없음 == Statless == 쓰레드세이프
     * ConverterRegistry에 등록해서 사용
@@ -62,7 +62,8 @@ comments: true
     >기본적으로 Integer.. 등등은 자동으로 등록해준다.   
     아닌것들은 직접 만들어줘야한다.  
 
-  * Formatter
+* Formatter
+
     웹쪽은 사용자 입력값이 문자가 들어오고 문자를 내보내는 경우가 많다. 
     메시지 다국화를 이용해서 여러가지 언어를 기반으로 메시지 소스를 사용해서 메시지를 보내야하는 경우도 존재한다.  
     조금 더 웹쪽에 특화되어 있는 인터페이스를 만들어서 제공한다 그것이 바로 formatter이다.
