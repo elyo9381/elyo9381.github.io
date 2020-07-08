@@ -1,6 +1,6 @@
 ---
 layout: post
-title: @Component와 ComponentScan
+title: Component와 ComponentScan
 subtitle: "spring, framework"
 categories: devlog
 tags: spring
