@@ -10,9 +10,7 @@ comments: true
 
 # Spring
 
-## 데이터 바인딩 추상화: Converter&Fomatter
-
-* ### 데이터 바인딩 추상화: Converter&Fomatter
+## Converter&Fomatter
 
   스프링 3.0이후 버전부터는 PropertyEditor를 대신하여 Converter 와 Fomatter를 사용한다.
 

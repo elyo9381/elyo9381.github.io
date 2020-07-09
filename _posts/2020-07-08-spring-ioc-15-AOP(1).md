@@ -10,9 +10,7 @@ comments: true
 
 # Spring
 
-## AOP-1
-
-### AOP(Aspect-oriendted Programming)
+## AOP(Aspect-oriendted Programming)
 
 * AOP(Aspect-oriendted Programming)
   : 흩어진 Aspect를 모듈화 할 수 있는 프로그래밍 기법.

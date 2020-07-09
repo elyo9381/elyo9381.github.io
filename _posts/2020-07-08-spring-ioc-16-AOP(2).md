@@ -12,8 +12,6 @@ comments: true
 
 ## AOP-2(프록시기반 AOP)
 
-### AOP-2(프록시기반 AOP)
-
 * 스프링 AOP 특징
   * 프록시 기반의 AOP 구현체
   * 스프링 빈에만 AOP를 적용할 수 있다.
