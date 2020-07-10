@@ -35,57 +35,57 @@ comments: true
 * # Bean setting
    * 빈 명세서
     ~~~
-      //빈을 xml로 명시하는 방법
-      <bean id="bookService" class ="me.elyowon.springapplicationcontext.BookService">
-          <property name="bookRepository" ref="bookRepository"/>
-      </bean>
-      <bean id="bookRepository"
-            class = "me.elyowon.springapplicationcontext.BookRepository"/>
+    // 빈을 xml로 명시하는 방법
+    <bean id="bookService" class ="me.elyowon.springapplicationcontext.BookService">
+        <property name="bookRepository" ref="bookRepository"/>
+    </bean>
+    <bean id="bookRepository"
+          class = "me.elyowon.springapplicationcontext.BookRepository"/>
 
-      //componentScan으로 애노테이션붙여서 스캔하는 방법
-      <context:component-scan base-package="me.elyowon.springapplicationcontext"/>
+    // componentScan으로 애노테이션붙여서 스캔하는 방법
+    <context:component-scan base-package="me.elyowon.springapplicationcontext"/>
       
-      ----------------  
+    ----------------  
 
-          빈설정파일을 사용하용 ApplicationconText 만들어서 사용하면 됩니다.
-          //        ApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+    // 빈설정파일을 사용하여 ApplicationconText 만들어서 사용하면 됩니다.
+    // ApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 
-          //xml을 사용하지 않고 자바 파일에서 빈을 명시하는 방법
-          //Applicationconfig.class를 이용한 빈설정
-      
-              ApplicationContext context = 
-                  new AnnotationConfigApplicationContext(ApplicationConfig.class);  
+    // xml을 사용하지 않고 자바 파일에서 빈을 명시하는 방법
+    // Applicationconfig.class를 이용한 빈설정
 
-      ---------------main.java------------
+    ApplicationContext context = 
+        new AnnotationConfigApplicationContext(ApplicationConfig.class);  
 
-      @Bean
-      public BookRepository bookRepository(){
-          return new BookRepository();
-      }
-      @Bean
-      public BookService bookService(BookRepository bookRepository){
-          BookService bookService = new BookService();
-          bookService.setBookRepository(bookRepository);
-      //  bookService.setBookRepository(bookRepository());
-          return bookService;
-      ---------------ApplicationConfig.java------------  
+    ---------------main.java------------
 
-      @Service //@Configuratio을 설정하였기때문에 주석처리함
-      public class BookService {
+    @Bean
+    public BookRepository bookRepository(){
+        return new BookRepository();
+    }
+    @Bean
+    public BookService bookService(BookRepository bookRepository){
+        BookService bookService = new BookService();
+        bookService.setBookRepository(bookRepository);
+    //  bookService.setBookRepository(bookRepository());
+        return bookService;
+    ---------------ApplicationConfig.java------------  
 
-      @Autowired //@Configuratio을 설정하였기때문에 주석처리함
-      BookRepository bookRepository;
+    @Service //@Configuration을 설정하였기때문에 주석처리함
+    public class BookService {
 
-      public void setBookRepository(BookRepository bookRepository) {
-          this.bookRepository = bookRepository;
-          }
-      }
-      ---------------BookService.java------------    
-      @Repository //@Configuration을 설정하였기때문에 주석처리함
-      public class BookRepository {
+    @Autowired //@Configuratio을 설정하였기때문에 주석처리함
+    BookRepository bookRepository;
 
-      }
-      ---------------BookRepository.java-----------
+    public void setBookRepository(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+        }
+    }
+    ---------------BookService.java------------    
+    @Repository //@Configuration을 설정하였기때문에 주석처리함
+    public class BookRepository {
+
+    }
+    ---------------BookRepository.java-----------
       ~~~
 
     > 빈 정의를 이루는 클래스에 겟터,생성자 등등을 만들어줘야한다. 또한 ComponentScan을 사용하기 위해서는 빈정의 클래스에 어노태이션을 붙여서 스캔 가능함을 알려줘야한다. 
@@ -97,7 +97,6 @@ comments: true
      * 스코프
      * 생성자
      * 프로퍼트
-     * 
 
 
 * # 컴포넌트 스캔

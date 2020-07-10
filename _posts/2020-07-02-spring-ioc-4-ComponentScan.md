@@ -47,22 +47,22 @@ comments: true
 
   ```
   @Autowired
-    MyService myService;
+  MyService myService;
 
-    public static void main(String[] args) {
-        //인스턴스를 만들어서 사용하는 방법
-        var app = new SpringApplication(Demospring51Application.class);
-        // run 되는 중간에 뭘 하고싶다.
-        // 빈을 추가적으로 등록할수있다.
-        app.addInitializers((ApplicationContextInitializer<GenericApplicationContext>) ctx -> {
-            // 이부분에 조건에 따라 코딩을 할수잇다.
+  public static void main(String[] args) {
+      //인스턴스를 만들어서 사용하는 방법
+      var app = new SpringApplication(Demospring51Application.class);
+      // run 되는 중간에 뭘 하고싶다.
+      // 빈을 추가적으로 등록할수있다.
+      app.addInitializers((ApplicationContextInitializer<GenericApplicationContext>) ctx -> {
+          // 이부분에 조건에 따라 코딩을 할수잇다.
 
-            // 펑션널하게 빈을 등록했다. 애플리케이션 구동시에 성능상의 이점이 있다.
-            ctx.registerBean(MyService.class);
-            ctx.registerBean(ApplicationRunner.class, () -> args1 -> System.out.println("Functional Bean Definition!!"));
-        });
-        app.run(args);
-    }
+          // 펑션널하게 빈을 등록했다. 애플리케이션 구동시에 성능상의 이점이 있다.
+          ctx.registerBean(MyService.class);
+          ctx.registerBean(ApplicationRunner.class, () -> args1 -> System.out.println("Functional Bean Definition!!"));
+      });
+      app.run(args);
+  }
   ```
   위의 방법은 add.Initializers(new ApplicationContextInitializer~~~)를 통해서 메소드를 구현하고 람다식으로 소스코드를 줄여준것이다. 
 

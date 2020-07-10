@@ -12,7 +12,7 @@ comments: true
 
 ## IoC 컨테이너 6부 : Enviroment 
 
-Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applicatino에 등록되어 있는 여러 환경들을 제어하고 이용할수 있도록 도와주는 기능입니다.
+Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Application에 등록되어 있는 여러 환경들을 제어하고 이용할수 있도록 도와주는 기능입니다.
 
 * ApplicationContext - IoC컨테이너가 갖추어야 할 기능들을 정의하고 있는 인터페이스로 다른 추가적인 기능들을 상속받고 있습니다. 그중하나가 EnviromentCapable입니다.
 
@@ -57,7 +57,7 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
    ⬆ Edit Configuration 방법
 
 * ### Property
-  Property란 Application의 외부에서 입력한 정보를 이용해 설정값을 변경하는 방법들을 제공하는 기능입니다. 외부에서 제공되는 정보들은 우선순위를 가지고 있고 다름은과 같은것들이 존재합니다.
+  Property란 Application의 외부에서 입력한 정보를 이용해 설정값을 변경하는 방법들을 제공하는 기능입니다. 외부에서 제공되는 정보들은 우선순위를 가지고 있고 다음과 같은것들이 존재합니다.
 
   우선순위 
   - ServletConfig 매개변수
@@ -68,7 +68,7 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
 
   xml(application.properties) 파일에 기술하고 이것을 enviroment를 통해 가져와 설정하므로써 java코드의 수정없이 설정정보를 변경할수있습니다.
 
-  * Environmentdp Property가 추가되는 과정
+  * Environmention Property가 추가되는 과정
     1. 우선 Context의 getEnvironment()메소드를 통해 ConfigurableEnvironment를 가져옵니다.(이때 곡 ConfigurableEnvironment를 가져와야 MutablePropertySource를 가져올수있습니다.)
     2. 그후 ConfigurableEnvironment의 getPropertySources()메소드를 이용해 MuablePropertySources를 업어옵니다.
     3. MutablePropertySources에 존재하는 add*()메소드들에 매개변수로 PropertySource를 다시 PropertySource의 배개변수로 외부파일을 전달하여 Property들을 추가합니다. 이때 각가의 값들은 Propertysource Type으로 MutablePropertySources안에 존재하는 propertySourceList에 추가됩니다.
@@ -194,7 +194,7 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
       public void run(ApplicationArguments args) throws Exception{
         ConfigurableEnvironment env = (ConfigurableEnvironment) context.getEnvironment();
         MutablePropertySources propertySources = env.getPropertySources();
-        propertySources.addLast(new ResourcePropertySource("classpath:app-propertoes"));
+        propertySources.addLast(new ResourcePropertySource("classpath:app-properties"));
         System.out.println(env.getProperty("app.name"));
         System.out.println(env.getProperty("app.pw"));
       }

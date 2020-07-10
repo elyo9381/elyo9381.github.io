@@ -14,6 +14,19 @@ comments: true
 
   스프링 기반 @AOP 애노테이션을 추가하려고하면 의존성부터 추가해야한다.
 
+  * ***Target***
+    : 적용이되는 대상  
+
+  * ***advice***
+    : 해당 클래스에 소스코드를 변경하지 않고 AOP를 이용한 기능을 추가하는것(적용시킬 내용)  
+      부가기능을 담은 구현체 
+
+  * ***JoinPoint***
+    : 적용될 위치 (메타적인 정보 - 메소드실행 전,후 에 등등)
+
+  * ***Pointcut***
+    : 어디에 적용될것인가? (적용할 메소드()의 내부 실행 전,후,Around)
+
   ```
   <dependency> 
     <groupId>org.springframework.boot</groupId>    <artifactId>spring-boot-starter-aop</artifactId>
