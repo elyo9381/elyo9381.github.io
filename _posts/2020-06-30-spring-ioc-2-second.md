@@ -2,8 +2,8 @@
 layout: post
 title: ApplicationContext와 다양한 빈 설정방법
 subtitle: "spring, framework"
-categories: devlog
-tags: spring
+categories: spring
+tags: framework
 comments: true
 ---
 > spring study

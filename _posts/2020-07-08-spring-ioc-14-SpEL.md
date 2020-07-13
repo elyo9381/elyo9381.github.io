@@ -2,8 +2,8 @@
 layout: post
 title: spring SpEL(스프링 Expression Language)
 subtitle: "spring, framework"
-categories: devlog
-tags: spring
+categories: spring
+tags: framework
 comments: true
 ---
 > spring study

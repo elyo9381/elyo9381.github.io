@@ -2,8 +2,8 @@
 layout: post
 title: spring Enviroment 
 subtitle: "spring, framework"
-categories: devlog
-tags: spring
+categories: spring
+tags: framework
 comments: true
 ---
 > spring study

@@ -2,8 +2,8 @@
 layout: post
 title: Bean 의 scope
 subtitle: "spring, framework"
-categories: devlog
-tags: spring
+categories: spring
+tags: framework
 comments: true
 ---
 > spring study
@@ -103,7 +103,7 @@ me.elyowon.demospring51.Proto@b9a77c8
 
  @Scope의 옵션에서 proxMode ScopedProxMode.TARGET_CLASS 의 의미는
  프록시를 쓴다는 것은 Proto클래스를 프록시로 감싸라는 의미이다.
- TARGET_CLASS 기반의 프록시로 감싸라 Proto(Bean)을 다른빈들이 사용할때
+ TARGET_CLASS 기반의 프록시로 감싸라 Proto(Bean)을 다른빈들이 사용할때  
  왜? 프록시로 감싸야하는냐 >> 다른인스턴스들이 Proto(Bean)을 참조하면 안되기 때문이다.
  프록시를 거쳐서 참조해야하기 때문이다.
  직접참조한다면 값이 싱글일테니 다이나믹 프록시를 거쳐 Prototype으로 변경하는것이다.

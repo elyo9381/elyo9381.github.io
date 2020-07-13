@@ -2,8 +2,8 @@
 layout: post
 title: spring AOP-2(프록시기반 AOP)
 subtitle: "spring, framework"
-categories: devlog
-tags: spring
+categories: spring
+tags: framework
 comments: true
 ---
 > spring study
