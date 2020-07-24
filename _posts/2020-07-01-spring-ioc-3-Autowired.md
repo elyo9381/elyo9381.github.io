@@ -20,18 +20,18 @@ comments: true
 
     Autowired를 사용할수있는 위치
     - 생성자
-     > @Autowired
-       public BookService(BookRepository bookRepository) {
+       @Autowired     
+       public BookService(BookRepository bookRepository) {   
        this.bookRepository = bookRepository;
-       }
+       }   
     - 세터 
-     > @Autowired(required = false)
-       public void setBookRepository(BookRepository bookRepository) {
+       @Autowired(required = false)   
+       public void setBookRepository(BookRepository bookRepository) {   
        this.bookRepository = bookRepository;
-       }
+       }   
     - 필드
-     > @Autowired(required = false)
-       BookRepository bookRepository;
+       @Autowired(required = false)   
+       BookRepository bookRepository;   
 
 
     ```
@@ -55,11 +55,11 @@ comments: true
     public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    ```
+    ```    
     위의코드는 의존 객체없이도 required = false를 통해서 빈등록이 가능하다.  
     그리고 의존 객체가 하나일때는 Autowired를 통해서 의존객체 빈등록이 가능하다.
 
-    ```
+    ```   
     //굳이 추천한다면 Primary를 추천한다
     //@Primary는 등록하고자 하는 의존객체빈에 애노테이션을 등록한다.
     //<의존성이 여러개일 경우 Repository가 여러개>
@@ -102,7 +102,6 @@ comments: true
      @PostConsturct
      public void setUp(){
          System.out.println(myBookRepository.getClass());
-
      }
 
        -----------------------

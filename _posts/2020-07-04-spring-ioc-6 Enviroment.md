@@ -74,7 +74,7 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
     3. MutablePropertySources에 존재하는 add*()메소드들에 매개변수로 PropertySource를 다시 PropertySource의 배개변수로 외부파일을 전달하여 Property들을 추가합니다. 이때 각가의 값들은 Propertysource Type으로 MutablePropertySources안에 존재하는 propertySourceList에 추가됩니다.
   
   
-   ### 자세히 살펴보기
+  ### 자세히 살펴보기
    
    * ConfigurableEnvironment
     ```
@@ -180,95 +180,94 @@ Enviroment는 ApplicatinoContext가 가지고 있는 기능중 하나로 Applica
 
     > MutablePropertySources에 존재하는 add*()메소드들에 매개변수로 PropertySource를 다시 PropertySource의 매개변수로 외부파일을 전달하여 Property들을 추가합니다. 이때 각가의 값들은 Propertysource Type으로 MutablePropertySources안에 존재하는 propertySourceList에 추가됩니다.
   
-  * 1. Environment에 외부파일을 이용해 Property추가하기
-    resources 파일의 하위목록으로 app.properties생성한다. app.name, app.pw 를 설정한다.
+  * 1. Environment에 외부파일을 이용해 Property추가하기 resources 파일의 하위목록으로 app.properties생성한다. app.name, app.pw 를 설정한다.   
     
-   
-    ```
-    @Component
-    public class AppRunner implements ApplicationRunner{
-      @Autowired
-      ApplicationContext Context;
+  
+  ```
+  @Component
+  public class AppRunner implements ApplicationRunner{
+    @Autowired
+    ApplicationContext Context;
 
-      @Override
-      public void run(ApplicationArguments args) throws Exception{
-        ConfigurableEnvironment env = (ConfigurableEnvironment) context.getEnvironment();
-        MutablePropertySources propertySources = env.getPropertySources();
-        propertySources.addLast(new ResourcePropertySource("classpath:app-properties"));
-        System.out.println(env.getProperty("app.name"));
-        System.out.println(env.getProperty("app.pw"));
-      }
+    @Override
+    public void run(ApplicationArguments args) throws Exception{
+      ConfigurableEnvironment env = (ConfigurableEnvironment) context.getEnvironment();
+      MutablePropertySources propertySources = env.getPropertySources();
+      propertySources.addLast(new ResourcePropertySource("classpath:app-properties"));
+      System.out.println(env.getProperty("app.name"));
+      System.out.println(env.getProperty("app.pw"));
     }
+  }
 
-    결과
-    "elyo9381"
-    "1234"
-    ```
-   
-  * 2. @PropertySource를 이용한 방법(애노테이션) 
-    ```
-    @Component
-    @PropertySource("외부파일주소")
-    public class AppRunner implements ApplicationRunner{
-      @Autowired
-      ApplicationContext Context;
+  결과
+  "elyo9381"
+  "1234"
+  ```
+  
+* 2. @PropertySource를 이용한 방법(애노테이션)    
+  ```
+  @Component
+  @PropertySource("외부파일주소")
+  public class AppRunner implements ApplicationRunner{
+    @Autowired
+    ApplicationContext Context;
 
-      @Override
-      public void run(ApplicationArguments args) throws Exception{
-        Environment env =  context.getEnvironment();
-        System.out.println(env.getProperty("app.name"));
-        System.out.println(env.getProperty("app.pw"));
-      }
+    @Override
+    public void run(ApplicationArguments args) throws Exception{
+      Environment env =  context.getEnvironment();
+      System.out.println(env.getProperty("app.name"));
+      System.out.println(env.getProperty("app.pw"));
     }
+  }
 
-    결과
-    "elyo9381"
-    "1234"
-    ```
+  결과
+  "elyo9381"
+  "1234"
+  ```
 
-  * 3. @Value 애노테이션 사용하기
-    application.properties 파일에 밸류값넣기 
-    ```
-    @Value("${app.name}") String name;
-    public void valueTest(){
-      Systemo.out.println(name);
+* 3. @Value 애노테이션 사용하기    
+  application.properties 파일에 밸류값넣기    
+  ```   
+  @Value("${app.name}") String name;
+  public void valueTest(){
+    Systemo.out.println(name);
+  }
+  ```   
+  @Value("${key}") String 변수명; key갑은 위의 application.properties에서 기입한 값에서 '='을 기준으로 앞에 있는 값을 의미합니다.    
+
+* 4. JVM
+  JVM의 옵션을 이용해 값을 Environment에 전달할 수 도 있습니다. 
+  Vm options  :  -Dapp.name= galid1234
+
+  ```
+  @Component
+  public class AppRunner implements ApplicationRunner{
+    @Autowired
+    ApplicationContext Context;
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception{
+      Environment env =  context.getEnvironment();
+      System.out.println(env.getProperty("app.name"));
     }
-    ```
-    @Value("${key}") String 변수명; key갑은 위의 application.properties에서 기입한 값에서 '='을 기준으로 앞에 있는 값을 의미합니다.
-
-  * 4. JVM
-    JVM의 옵션을 이용해 값을 Environment에 전달할 수 도 있습니다. 
-    Vm options  :  -Dapp.name= galid1234
-
-    ```
-    @Component
-    public class AppRunner implements ApplicationRunner{
-      @Autowired
-      ApplicationContext Context;
-
-      @Override
-      public void run(ApplicationArguments args) throws Exception{
-        Environment env =  context.getEnvironment();
-        System.out.println(env.getProperty("app.name"));
-      }
-    }
-    ```
-    어노테이션등이 필요하지 않다. 
-    
-
-    
-     
-
-
-
+  }
+  ```
+  어노테이션등이 필요하지 않다. 
   
 
   
+    
 
 
 
 
-  
+
+
+
+
+
+
+
 
 
 

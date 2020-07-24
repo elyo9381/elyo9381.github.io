@@ -140,7 +140,7 @@ comments: true
 
   * #### 애플리케이션 관리 이벤트 
     스프링이 제공하는 기본 이벤트  
-    ● ContextRefreshedEvent: ApplicationContext를 초기화 했더나 리프래시 했을 때 발생.  
+    ● ContextRefreshedEvent: ApplicationContext를 초기화 했거나 리프래시 했을 때 발생.  
     ● ContextStartedEvent: ApplicationContext를 start()하여 라이프사이클 빈들이 시작신호를 받은 시점에 발생.  
     ● ContextStoppedEvent: ApplicationContext를 stop()하여 라이프사이클 빈들이 정지신호를 받은 시점에 발생.  
     ● ContextClosedEvent: ApplicationContext를 close()하여 싱글톤 빈 소멸되는 시점에발생.  
