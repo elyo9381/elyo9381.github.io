@@ -3,7 +3,7 @@ layout: list
 title: CS
 slug: CS
 menu: true
-submenu: false
+submenu: true
 order: 4
 description: >
   computer Science

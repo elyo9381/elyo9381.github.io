@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: React
-slug: react
-category: devlog
+title: programes
+slug: programes
+category: PS
 menu: false
-order: 1
+order: 2
 ---
