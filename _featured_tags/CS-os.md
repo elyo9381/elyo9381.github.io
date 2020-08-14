@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: ML
-slug: ml
-category: devlog
+title: OS
+slug: OS
+category: CS
 menu: false
 order: 1
 ---
