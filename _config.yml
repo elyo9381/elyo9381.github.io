@@ -111,6 +111,16 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
+  # Jekyll configuration
+markdown: kramdown
+# kramdown : markdown의 개조판.
+# markdown에서 불편한 사항을 개선한 형태.
+
+highlighter: rouge
+# text highlighter로 rouge이용
+# 2016.02월 이후로 syntax highlighter는 rouge만 지원.
+# Pygments 사용불가.
+
 kramdown:
   footnote_backlink: '&#x21a9;&#xfe0e;'
   math_engine:       mathjax
