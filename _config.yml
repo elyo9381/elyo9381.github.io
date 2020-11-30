@@ -13,12 +13,12 @@ url:                 https://elyo9381.github.io
 baseurl:             ""
 
 # A very short description of your page
-tagline:             기록기록끼록끼룩끼룩 끼룩 ~~ 
+tagline:             기록하며 기억하자
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  눕고싶다......... 드러눕고 싶다아아아아~~~~
+  진심을 다해서 
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
@@ -44,10 +44,10 @@ google_fonts:        Lato
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-google_analytics:    
+google_analytics:    UA-121347599-1
 
 # Setting a disqus shortname will enable the comment section on pages with `comments: true` in the front matter
-disqus_shortname:    elyo
+disqus_shortname:    elyo-dev-blog
 
 # This text will appear in the footer of every page. Markdown enabled.
 copyright:           '&copy; 2020. by elyo'
@@ -56,7 +56,7 @@ copyright:           '&copy; 2020. by elyo'
 permalink:           pretty
 
 # Pagination configuration (used by the `blog` layout)
-paginate:            8
+paginate:            10
 paginate_path:       '/page-:num/'
 
 # If you are upgrading form a v5 verison of Hydejack, uncomment the two lines below,
@@ -102,7 +102,7 @@ gems:
   - jekyll-paginate
   - jekyll-redirect-from
 
-exclude:
+exclude: 
   - README.md
   - LICENSE.md
   - node_modules
@@ -110,16 +110,6 @@ exclude:
   - package-lock.json
   - Gemfile
   - Gemfile.lock
-
-  # Jekyll configuration
-markdown: kramdown
-# kramdown : markdown의 개조판.
-# markdown에서 불편한 사항을 개선한 형태.
-
-highlighter: rouge
-# text highlighter로 rouge이용
-# 2016.02월 이후로 syntax highlighter는 rouge만 지원.
-# Pygments 사용불가.
 
 kramdown:
   footnote_backlink: '&#x21a9;&#xfe0e;'

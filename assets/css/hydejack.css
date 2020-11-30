@@ -3,11 +3,6 @@
 {% capture include_to_scssify %}{% include styles/style.scss %}{% endcapture %}
 {% include copyright-header.txt %}{{ include_to_scssify | scssify }}
 
-.centered-product {
-  display: flex;
-  justify-content: center;
-}
-
 @media(max-width: 700px) {
 .markdown-body {
   -ms-text-size-adjust: 100%;
