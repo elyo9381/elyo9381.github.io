@@ -1,12 +1,11 @@
 ---
 layout: post
 title: 면접 질문 리스트 & 답변
-subtitle: "java question"
-categories: Tip
-tags: tip
+subtitle: "tip,interview"
+categories: tip
+tags: interview
 comments: true
 ---
-
 
 
 라이브러리
