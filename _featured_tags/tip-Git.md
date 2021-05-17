@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: Tip
-slug: Tip
-category: Tip
+title: Git
+slug: git
+category: tip
 menu: false
 order: 1
 ---
