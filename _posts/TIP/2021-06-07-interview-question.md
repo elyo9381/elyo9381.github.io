@@ -297,7 +297,7 @@ MSA에서 사용하는 방식입니다.
 
 
 
-```mermaid
+```mermaid!
 graph LR
 A[Square Rect] -- Link text --> B((Circle))
 A --> C(Round Rect)
