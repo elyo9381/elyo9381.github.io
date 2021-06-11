@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="면접 질문 리스트 & 답변">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>면접 질문 리스트 & 답변 &middot; Elyo</title>
+
+
+
+<meta name="description" content="라이브러리
+
+">
+<meta property="og:description" content="라이브러리
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/tip/2021/05/02/javaInterviewQuestion/">
+<meta property="og:url" content="http://localhost:4000/tip/2021/05/02/javaInterviewQuestion/">
+
+<link rel="alternate" type="application/atom+xml" title="Elyo Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/spring/2021/03/09/QueryDsl-2/">
+
+
+
+  <link rel="next" href="http://localhost:4000/tip/2021/05/17/git-tip/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-tip/2021/05/02/javaInterviewQuestion" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        면접 질문 리스트 & 답변
+      
+    </h1>
+    
+    <p>tip,interview</p>
+    
+    <p class="post-date heading">
+      <time datetime="2021-05-02T00:00:00+09:00">02 May 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/tip/" data-flip="title">Tip</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/tip-interview/" data-flip="title">Interview</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+  <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+
+<!--<ins class="adsbygoogle myAd1190"-->
+    <!--data-ad-client="ca-pub-9134477021095729"-->
+    <!--data-ad-slot="6559875097"-->
+    <!--&gt;</ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+<br/>
+      <p>라이브러리</p>
+
+<ul>
+  <li>독립성을 가진 최소단위의 기능이다. (함수[메서드] 단위)
+    <ul>
+      <li>재사용 가능한 최소 단위 기능 또는 기능들의 집합이다.</li>
+      <li>기능을 사용하기 위해 다른 기능이 필요하지 않아야한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>라이브러리의 예</p>
+<ul>
+  <li>데이터를 정렬한다  () or 역 정렬한다().</li>
+  <li>데이터를 하닜기 반환한다. or 반한화면서 삭제한다.</li>
+  <li>날짜에서 요일을 반환한다.() or 날짜에서 시간을 반환한다().</li>
+  <li>숫자를 더한다 or 숫자를 곱한다.</li>
+</ul>
+
+<p>라이브러리 구분</p>
+<ul>
+  <li>표준 라이브러리
+    <ul>
+      <li>언어가 제공해주는 기본 함수 ##stdio.h , import java.util.* 등의 SDK들</li>
+    </ul>
+  </li>
+  <li>사용자 정의 라이브러리
+    <ul>
+      <li>표준 라이브러리를 사용하여 만든 라이브러리.</li>
+      <li>기능별로 그룹화 하여 Wrapping 한것</li>
+    </ul>
+  </li>
+</ul>
+
+<p>프레임 워크</p>
+<ul>
+  <li>Library와 다른 Framework의 집합체이다.
+    <ul>
+      <li>여러 Library와 여러 Framework가 포함되어 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>library와 framework의 단점과 장점
+단점</p>
+<ul>
+  <li>느리다 무겁다. 비용이 많이 듣다.</li>
+  <li>통제가 안된다. (오픈소스는 가능)</li>
+  <li>세팅,학습하는데 오래걸린다.
+  ex) juery를 전체 적용했다가 코어부분은 바닐라js 다시 구현하는경우</li>
+</ul>
+
+<p>장점</p>
+<ul>
+  <li>개발이 편하다. 재사용이 가능하다. 개발일정이 단축된다.</li>
+  <li>전문적인 고민과 노하우가 있어서 오류가 적다.</li>
+</ul>
+
+<p>속도와 성능이 필요한 서버 개발만 native로 하면된다. 
+성능과 개발 생산성을 함께 고려해야한다. 최적화가 필요하다.</p>
+
+<hr />
+
+<p>왜 이렇게 생각하는지 모두 적어보자</p>
+
+<p>질문</p>
+
+<h2 id="rest-api는-무엇인가">Rest API는 무엇인가?</h2>
+<ul>
+  <li>API 설계시에 리소스중심이며 HTTP Method를 통해 api를 설계하는것이 restful api입니다.</li>
+  <li>장점
+    <ul>
+      <li>open API를 제공하기 쉽다.</li>
+      <li>멀티 플랫폼 지원이 용이히다.</li>
+      <li>원하는 타입으로 데이터를 주고 받을수있다.</li>
+    </ul>
+  </li>
+  <li>단점
+    <ul>
+      <li>http 통신 모델에 대해서만 지원한다.</li>
+      <li>분산환경에는 부적합하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="절차지향과-객체지향의-차이점은-무엇이며-장단점은-무엇인가-">절차지향과 객체지향의 차이점은 무엇이며 장단점은 무엇인가 ?</h2>
+<ul>
+  <li>절차지향 : 수행되어야 할 연속적인 계산과 과정을 포함하고 있는 프로그래밍 패러다임입니다.</li>
+  <li>객체지향 : 강한 응집력과 약한 결합력을 위해 현실세계의 객체라는 개념을 이용한 프로그래밍 패러다임입니다.</li>
+  <li>공통점 : 모듈화된 프로그램구현 방법이 사용됩니다.</li>
+  <li>차이점 : 추상화, 다형성, 상속, 캡슐화을 통하여서 강한 응집력과 약한 결합력을 나타낼수있으며 이러한 특징을 통해서 재사용성이 용이합니다.</li>
+</ul>
+
+<h2 id="객체지향-설계-5원칙">객체지향 설계 5원칙</h2>
+<ol>
+  <li>SRP(단일 책임 원칙) : 클래스와 메소드는 하나의 역할만 하도록 한다.</li>
+  <li>OCP(개방 폐쇠 원칙) : 자신의 확장은 개방하고, 변경은 (방지)한다.</li>
+  <li>LSP(리스코프 치환 원칙) : 서브타입은 언제나 자신의 상위타입으로 교체할 수 있어야 한다.</li>
+  <li>ISP(인터페이스 분리 원칙) : 객체는 자신이 사용하지 않는 메소드에 의존 관계를 맺으면 안된다.</li>
+  <li>DIP(의존 역전 원칙) : 자신보다 변하기 쉬운것에 의존하지 마라
+    <ul>
+      <li>추상화된것에 구체적인것이 의존해야한다. 이것의 반대가 되면 안된다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="데이터-타입과-변수의-차이는-뭔가요">데이터 타입과 변수의 차이는 뭔가요</h2>
+<ul>
+  <li>데이터 타입 : 컴퓨터에서 값을 식별하기위한 식별자입니다.
+    <ul>
+      <li>프로그램을 실행하지 않고도 결정할 수있는 프로그램의 특성으로 정의 됩니다.</li>
+      <li>기본타입과 참조타입으로 나눠집니다.</li>
+    </ul>
+  </li>
+  <li>변수 : 특정 데이터 타입에서 변할수있는 값저장소 라고 말할 수 있습니다.</li>
+  <li>차이점 :  둘의 차이는 계층이 다르다고 생각합니다. 데이터타입이 더 상위 계층이라고 생각합니다.
+    <ul>
+      <li>변수의 값은 범위내에서 변할수있는 데이터 이지만 데이터 타입은 임의적으로 변화해서는 안되는 변수를 표현하는 데이터 형식이라고 생각합니다.</li>
+      <li>변수는 데이터 타입에 종속적입니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="밸류타입과-레퍼런스-타입이-무엇인가요-대표적인것을-예로-들어">밸류타입과 레퍼런스 타입이 무엇인가요 (대표적인것을 예로 들어)</h2>
+<ul>
+  <li>밸류타입 : 메모리 호출시 메모리에 저장되어있는 값을 복사하는 타입 (primitive type) 타입</li>
+  <li>레퍼런스 : 메모리 호출시 메모리에 저장되어있는 주소 값을 복사하는 타입 (배열,클래스,열거,인터페이스) 타입</li>
+</ul>
+
+<h2 id="문자열은-char형과-string형으로-나눠진-이유는-뭔가요-">문자열은 char형과 string형으로 나눠진 이유는 뭔가요 ?</h2>
+<ul>
+  <li>string 형은 string 클래스 이고 참조타입니다.</li>
+  <li>이는 char배열에 여러가지 메소드를 추가한것이 string 클래스입니다.</li>
+  <li>char배열을 라이브러리로 만든것이 string 클래스라고 할수있습니다.</li>
+</ul>
+
+<h2 id="힙과-스택-영역에-대해서-설명할수있나요">힙과 스택 영역에 대해서 설명할수있나요</h2>
+<ul>
+  <li>JVM : OS의 한정된 메모리를 효율적으로 사용하기 위한 스택기반의 가상머신(메모리관리, GC)입니다.</li>
+  <li>클래스 로더 : JVM 내에서 클래스를 로드하고 링크하는 역할, JVM위에서 사용하지 않는 클래스들은 메모리에서 삭제되며, 런타임에 참조된다.</li>
+  <li>Execution Engine : 변환된 파일을 실행시키는 역할, 자바 바이트 코드를 기계가 실행할 수 있는 형태로 변경된 코드를 실행한다.</li>
+  <li>GC : 힙영역의 메모리해제를 관리하는 기능입니다. 참조되지 않은 객체, 자주 사용되는 객체, 메모리 할당된 객체를 중점으로 GC가 힙영역의 메모리를 관리합니다.</li>
+</ul>
+
+<h2 id="스택이-존재하는-이유는-무엇인가요-">스택이 존재하는 이유는 무엇인가요 ?</h2>
+<ul>
+  <li>독립적인 메모리공간을 위해서 스택이 존재합니다. 독립적으로 사용될 변수, 되돌아갈 주소 등을 저장하기 위해서 스택이 존재합니다.</li>
+</ul>
+
+<h2 id="equals-과--연산자의-차이가-무엇인가요">equals() 과 == 연산자의 차이가 무엇인가요</h2>
+<ul>
+  <li>equal함수는 데이터값만 같으면 참거짓을 반환하고 ==은 객체(주소값) 와 데이터 값이 같아야 합니다.</li>
+</ul>
+
+<h2 id="equals에서-객체가-같음을-어떻게-비교-할까요-">equals에서 객체가 같음을 어떻게 비교 할까요 ?</h2>
+<ul>
+  <li>최종적으로는 == 연산자를 통해서 비교하지만 이를 위해서 형변환 및 equals 오버라이딩이 필요합니다.</li>
+</ul>
+
+<h2 id="new는-왜-생성하나요-">new는 왜 생성하나요 ?</h2>
+<ul>
+  <li>제한되어 있는 메모리를 효율적으로 사용하기 위해서 new를 사용합니다.</li>
+  <li>이는 heap 영역에서 데이터를 관리하여 메모리를 효율적으로 사용할수 있습니다.
+    <ul>
+      <li>Eden, old Memory</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="해쉬코드에-대해서-설명하라">해쉬코드에 대해서 설명하라</h2>
+<ul>
+  <li>해시(임의의 크기를 가진 데이터를 고정된 크기의 데이터로 변화시키는)자료구조를 통해서 도출된 임의의 값을 생성하는 코드가 해시 코드이다. 자바에서는 이를 통해 객체의 값을 비교 한다. 해시는 해시함수, 해시테이블 등으로 구성되며 충돌이 일어나지 않게 구성해야한다.</li>
+</ul>
+
+<h2 id="해시의-충돌-해결-방법">해시의 충돌 해결 방법</h2>
+<ol>
+  <li>open Address방식
+    <ul>
+      <li>해시 충돌이 발생하면, 다른 해시버킷에 해당 자료를 삽입하는 방식이다.</li>
+      <li>충돌이 발생하면 다른 버킷을 찾는데 worstCase의 경우에는 충돌을 해결치 못하고 다시 원상태로 되돌아올수도 있다.</li>
+      <li>linear probing : 버킷을 포함하는 해시테이블의 인덱스를 하나씩 늘려 버킷이 비었는지 확인한다.</li>
+      <li>Quadratic probing : 충돌 발생시 i^2으로 공간이 비었는지 확인한다.</li>
+      <li>DoubleHashing Probing : 해시된 결과값을 한번더 해시한다.</li>
+    </ul>
+  </li>
+  <li>seperate chaining
+    <ul>
+      <li>충돌이 발생하면 충돌지점에 리스트 &amp; 트리 자료구조를 이용해서 충돌 데이터를 저장하는 방법입니다.</li>
+    </ul>
+  </li>
+  <li>장단점
+    <ul>
+      <li>오픈 어드레스 방법은 삭제하기 어렵다는 단점이 존재하고 버킷을 늘리면 배열과 다를바가 없어 효율적이지 않다.</li>
+      <li>체이닝 기법은 상대적으로 효과적인데 리스트로 충돌을 연결하면 연결할때마다 오버헤드를 감수해야하고 검색시 O(N)이된다.</li>
+      <li>체이닝 기법에서 트리를 사용하면 O(logN)으로 검색을 진행할수있다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="해쉬코드를-이용해서-같은-객체인지-비교하는-방법은-무엇인가요">해쉬코드를 이용해서 같은 객체인지 비교하는 방법은 무엇인가요?</h2>
+<ul>
+  <li>해시코드를 이용해서 리턴값이 같은지 확인하여 같은객체 인지 확인하고 equals 메서드를 통해서 비교값이 같은지 확인합니다. 해시코드와 equals를 오버라이딩을 통해 값을 비교한다.</li>
+</ul>
+
+<h2 id="equals-오버라이딩">.equals() 오버라이딩</h2>
+<ul>
+  <li>object 타입을 통해서 equals를 오버라이딩 하여 비교 할수있습니다.</li>
+</ul>
+
+<h2 id="자바의-메모리-구조">자바의 메모리 구조</h2>
+<ul>
+  <li>.java » javac가 컴파일 » .class(자바 바이트코드) » 클래스로더 &lt;-&gt; 익스쿠션엔진 » JVM</li>
+  <li>메모리는 JVM의 Runtime Data Areas에서 관리한다.</li>
+  <li>크게 staticArea , HeapArea , StackArea로 구분할수있다.</li>
+  <li>Method(static) : 클래스,인터페이스의 런타임상수,멤버변수, 생성자와 메소드를 저장하는 공간이다.</li>
+  <li>Heap : 런타임시 동적으로 메모리를 사용하는 영역 ,GC의 대상이된다.</li>
+  <li>Stack : 스레드마다 하나씩 존재하며, 스레드가 시작될때 할당한다. 자바의 primitive 타입, 메소드정보 , 지역변수, 등의 데이터를 저장한다. 또한 메서드 호출시 스레드정보 또한 stack에 저장된다.</li>
+</ul>
+
+<h2 id="string-pool이-무엇인가요">string pool이 무엇인가요?</h2>
+<ul>
+  <li>literal로 생성한 값이 string pool에 들어갑니다. 힙영역내의 literal로 생성한 string은 이에 들어가고 같은 값이 호출시에 string pool을 참조하여 객체를 리턴합니다.</li>
+</ul>
+
+<h2 id="멤버변수와-지역변수의-차이와-stack영역에-저장되는-변수는-누구인가요">멤버변수와 지역변수의 차이와 stack영역에 저장되는 변수는 누구인가요?</h2>
+<ul>
+  <li>stack에 저장되는 변수는 지역변수입니다. 멤버변수는 클래스의 내부변수이므로 Method Areas에 저장됩니다. 반면 지역변수는 스레드와 관계 있는 영역이므로 독립적인 stack에 저장되고 메모리영역의 차이가 둘의 차이입니다.</li>
+</ul>
+
+<h2 id="스택영역와-힙영역의-변수들은-언제-해제가-되나요">스택영역와 힙영역의 변수들은 언제 해제가 되나요?</h2>
+<ul>
+  <li>스택영역의 변수들은 스레드 종료시 즉 해제 됩니다. 특정메소드 호출이 종료되거나 스레드가 종료되며 stack에 할당된 데이터는 해제 됩니다.</li>
+  <li>힙영역의 변수들은 명시적으로 해제 해주거나 GC에 의해서 해제가 됩니다.</li>
+</ul>
+
+<h2 id="어떤-자료구조가-있는가">어떤 자료구조가 있는가?</h2>
+<ul>
+  <li>배열,리스트,스택,큐,덱,해싱, 그래프, 트리 등이 존재합니다.</li>
+</ul>
+
+<h2 id="자료구조를-선택하는-기준은-무엇인가요">자료구조를 선택하는 기준은 무엇인가요?</h2>
+<ul>
+  <li>효율성입니다. 시간, 공간 복잡도를 고려한 효율적인 자료구조를 선택해야합니다.</li>
+</ul>
+
+<h2 id="listsetmap에-대해서-설명할수있나요">list,set,map에 대해서 설명할수있나요</h2>
+<ul>
+  <li>list : 순서가 있는 데이터의 집합이며 중복을 허용합니다.</li>
+  <li>set : 순서가 없는 데이터의 집합이며 중복을 허용하지 않습니다. 키 == 밸류</li>
+  <li>map : 키밸류스토어 구조로 이루어진 데이터의 집합이며 키값은 중복 허용하지 않으며 밸류는 중복을 허용합니다.</li>
+  <li>list,set,map은 데이터를 저장하기위한 자료구조 입니다.</li>
+</ul>
+
+<h2 id="listsetmap-어떤-인터페이스를-구현하고-있나요">list,set,map 어떤 인터페이스를 구현하고 있나요</h2>
+<ul>
+  <li>list,set은 컬렉션 인터페이스를 구현하고 있고, map은 k,v구조로 이루어진 인터페이스 입니다.</li>
+</ul>
+
+<h2 id="foreach를-사용할수있는-자료구조는-어떠한-인터페이스를-상속받고-있나요">foreach를 사용할수있는 자료구조는 어떠한 인터페이스를 상속받고 있나요?</h2>
+<ul>
+  <li>collection 구현체들이 foreach를 사용할수있습니다. collection은 iterable interface를 상속받고 있기 때문입니다.</li>
+</ul>
+
+<h2 id="foreach를-사용하기-위한-내부적-메소드는-무엇인가요">foreach를 사용하기 위한 내부적 메소드는 무엇인가요?</h2>
+<ul>
+  <li>foreach는 내부적으로 itertor() 호출하여 이를 통해서 loop를 진행합니다.</li>
+</ul>
+
+<h2 id="iterator와-iterable의-차이점은-무엇인가요">iterator와 iterable의 차이점은 무엇인가요?</h2>
+<ul>
+  <li>iterable은 foreach와 iterator를 갖는 인터페이스 입니다.</li>
+  <li>iterator는 collection을 지원하기 위한 인터페이스로서 collection 데이터를 읽어올때 사용된다.</li>
+  <li>차이점 : iterator를 이용하면 collection 탐색시에 요소를 삭제하거나 다음 요소를 인덱스가 있는것처럼 활용할수있다. next,remove등의 메소드를 통해서 하지만 iterable의 foreach를 사용하면 collection의 요소를 삭제하거나 특정 요소를 확인할수있는 방법이없다.</li>
+</ul>
+
+<h2 id="iterator를-상속받으면-구현해야-하는-메서드는-무엇인가요">iterator를 상속받으면 구현해야 하는 메서드는 무엇인가요?</h2>
+<ul>
+  <li>HasNext를 구현해야합니다. (overriding) 그래야 내부적으로 다음 요소를 확인할수있으므로</li>
+</ul>
+
+<h2 id="배열-size변경이-가능한가요">배열 size변경이 가능한가요?</h2>
+<ul>
+  <li>배열의 사이즈 변경은 불가능 합니다. 힙영역에 사이즈만큼 주소값을 가지고 있습니다.</li>
+</ul>
+
+<h2 id="배열에-10개의-데이터가-있는데-5개의-배열로-줄이고-싶을떄-어떻게-해야하는가">배열에 10개의 데이터가 있는데 5개의 배열로 줄이고 싶을떄 어떻게 해야하는가.?</h2>
+<ul>
+  <li>배열의 사이즈를 변경하기 위해서는 재할당하고, 배열의 값을 복사해야합니다.</li>
+</ul>
+
+<h2 id="size가-변경될-경우에는-어떠한-자료구조를-사용하는것이-좋을까요">Size가 변경될 경우에는 어떠한 자료구조를 사용하는것이 좋을까요?</h2>
+<ul>
+  <li>데이터가 많을때는 링크드리스트가 좋으며 , 적을때는 배열이 좋습니다.</li>
+</ul>
+
+<h2 id="가변-자료구조는-어떤게-있나요">가변 자료구조는 어떤게 있나요?</h2>
+<ul>
+  <li>링크드리스트, 트리 등 Node의 개념을 사용하는 자료구조가 가변적입니다.</li>
+</ul>
+
+<h2 id="gerneric타입과-none-gerneric-타입의-차이를-설명해주세요">gerneric타입과 none gerneric 타입의 차이를 설명해주세요</h2>
+<ul>
+  <li>gerneric : 데이터 타입을 제한하지 않고 사용할 수 있게 해주는 매개변수화된 타입입니다.</li>
+  <li>none gerneric : 제너릭을 사용하지 않고 모든 순간 타입을 확인하며 형변환 해야하는 타입</li>
+  <li>차이점 : 코드의 재사용성에 차이가 존재하며, 에러 검출시 차이점이 존재합니다. 제너릭은 컴파일 시점에 넌제너릭은 런타임 시점에 에러를 검출하는 차이점이 존재합니다.</li>
+</ul>
+
+<h2 id="gerneric타입-종류는-무엇이-있나요">gerneric타입 종류는 무엇이 있나요?</h2>
+<ul>
+  <li>매개변수화 타입</li>
+  <li>언바운드 와일드카드 타입</li>
+  <li>바운드 타입 매개변수</li>
+  <li>재귀적 타입 바운드</li>
+</ul>
+
+<h2 id="gerneric타입--장점은-무엇인가요---object사용하면-되는데">gerneric타입  장점은 무엇인가요  ? object사용하면 되는데?</h2>
+<ul>
+  <li>제너릭으로 설정하면 자바가 타입을 확인해 주어 코드상으로 더욱 편한 이점이 존재합니다. 이를 통해 코드의 안전성을 줄수있습니다. object를 사용하면 가능하지만 형변환 할때마다 오버헤드가 존재하므로 제너릭 사용시 이러한 오버헤드를 줄일수있습니다.</li>
+</ul>
+
+<h2 id="arraylist와-linkedlist의-차이를-설명하세요">ArrayList와 linkedList의 차이를 설명하세요</h2>
+<ul>
+  <li>동적으로 사이즈를 할당할수있냐 없냐의 차이입니다. arraylist는 동적으로 배열을 할당할수없습니다. 배열의 사이즈를 늘리고 복사하는 방법인 반면에 linkedList는 인덱스 기반이 아닌 sequence 기반으로 동적하기 때문에 데이터의 추가삭제를 위한 동적 사이즈를 늘리를 것에 효율적입니다. 이는 메모리상에서도 동일합니다.</li>
+</ul>
+
+<h2 id="데이터를-순차적으로-찾을때-가장-적합한-것은-어느것인가요">데이터를 순차적으로 찾을때 가장 적합한 것은 어느것인가요?</h2>
+<ul>
+  <li>순차적으로 찾을때는 ArrayList를 사용하는것이 좋습니다. 왜냐하면 인덱스를 기반으로 빠른 탐색이 가능하기 때문입니다.</li>
+</ul>
+
+<h2 id="데이터를-빈번하게-삭제하거나-추가할때-사용하는-자료구조는-어떤것인가요--왜-">데이터를 빈번하게 삭제하거나 추가할때 사용하는 자료구조는 어떤것인가요?  왜 ?</h2>
+<ul>
+  <li>linkedList 자료구조를 사용해야 합니다. arraylist는 내부적으로 삭제 삽입시 사이즈를 고려해여 데이터를 shit해야합니다. 하지만 linkedList는 지정된 요소의 주소에 주소값을 연결하기 때문에 linkedList가 효율적입니다. 손쉽게 데이터를 추가/삭제 가능합니다.</li>
+</ul>
+
+<h2 id="arraylist에서-데이터를-중간에-삭제하면-어떻게-동작하나요">ArrayList에서 데이터를 중간에 삭제하면 어떻게 동작하나요?</h2>
+<ul>
+  <li>특정 인덱스를 찾고 그값을 삭제하면 뒤에있는 데이터들을 삭제한곳부터 한칸식 shift합니다. 중간데이터 하나를 삭제하면 뒤의 모든 데이터를 옮겨야합니다.</li>
+</ul>
+
+<h2 id="arraylist와-list중에-검색속도가-빠른것은-무엇이고-느린것은-무엇인가">Arraylist와 list중에 검색속도가 빠른것은 무엇이고 느린것은 무엇인가?</h2>
+<ul>
+  <li>검색속도가 빠른것은 arrayList입니다. 이는 인덱스를 기반으로 O(1)복잡도로 데이터를 찾을수있습니다.</li>
+  <li>느린것은 linkList이고 리스트는 인덱스 기반이 아니라 Node를 통해서 값인지 아닌지를 확인해야 하기때문에 O(n) 시간복잡도가 걸립니다.</li>
+</ul>
+
+<h2 id="linkedlist의-내부적인-동작방법">linkedlist의 내부적인 동작방법</h2>
+<ul>
+  <li>주소를 가르키는 node와 값을 넣는 data로 구성되어있습니다. 데이터가 추가 삭제 되면 node에 새로운 데이터와 연결하거나 삭제합니다.</li>
+</ul>
+
+<h2 id="map을-사용해야하는경우는-무엇인가요">map을 사용해야하는경우는 무엇인가요?</h2>
+<ul>
+  <li>특정 데이터를 빠르게 검색하고 싶을때 사용합니다. 데이터를 검색할시 key를 이용해서 검색하면 O(1)에 검색 가능하기 때문입니다. map의 key는 중복되지 않기 떄문입니다.</li>
+</ul>
+
+<h2 id="해시테이블과-해시맵의-차이는">해시테이블과 해시맵의 차이는</h2>
+<ul>
+  <li>공통점 : k,v 구조이며 k 는 중복이 없다. v는 중복가능하다.</li>
+  <li>차이점 :
+    <ul>
+      <li>hashtable은 동기화 되기 떄문에 thread-safe 하지만 HashMap은 동기화 되지 않기 때문에 thread-safe 하지 않는다. 그렇기에 멀티 쓰레드 환경이 아니아면 Hashtable은 HashMap보다 성능이 떨어집니다.</li>
+      <li>HashTable은 key에 null을 허용하지 않습니다. 하지만 HashMap은 key에 null을 허용합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="큐와-스택의-차이를-설명해주세요">큐와 스택의 차이를 설명해주세요</h2>
+<ul>
+  <li>큐는 선입선출이고, 스택은 후입선출입니다. input에 대비하여 output이 다른 차이가 있습니다.</li>
+</ul>
+
+<h2 id="큐와-스택의-사용-예를-하나씩-설명하라">큐와 스택의 사용 예를 하나씩 설명하라</h2>
+<ul>
+  <li>큐는 스케줄링 관리시스템, 배치 시스템등</li>
+  <li>스택은 웹/앱 브라우저 방문기록</li>
+</ul>
+
+<h2 id="큐와-스택은-내부적으로-어떤-자료구조를-사용했나요">큐와 스택은 내부적으로 어떤 자료구조를 사용했나요</h2>
+<ul>
+  <li>큐는 리스트, 스택은 백터를 사용하였는데 결국 내부적으로 콜렉션을 사용하였습니다.</li>
+</ul>
+
+<h2 id="큐와-스택을-직접-구현할때-사용해야하는-자료구조는">큐와 스택을 직접 구현할때 사용해야하는 자료구조는?</h2>
+<ul>
+  <li>스택은 배열을 통해서 큐는 링크드리스트를 통해서 구현하는게 좋습니다.</li>
+</ul>
+
+<h2 id="우선순위-큐에-대해서-말하라">우선순위 큐에 대해서 말하라</h2>
+<ul>
+  <li>큐에서 내부적으로 정렬이 되어있는 경우를 뜻합니다. 정렬은 최소힙과 최대힙을 통해서 구현되어있습니다.</li>
+  <li>힙 : 이진트리를 이용하여 root부터 leaf까지 특정 차순으로 정렬되어있는 구조를 힙이라고 합니다. 오름차순된 힙은 최소힙이며 내림차순된 힙은 최대힙입니다.</li>
+</ul>
+
+<h2 id="트리에-대해서-설명하라--다른-자료구조들과-차이점은-무엇인가-">트리에 대해서 설명하라 ? 다른 자료구조들과 차이점은 무엇인가 ?</h2>
+<ul>
+  <li>트리는 비선형 자료구조입니다.</li>
+  <li>계층구조를 나타내는 자료구조이며 노드 N인 트리는 n-1 간선을 갖는 특징이 있습니다.</li>
+</ul>
+
+<h2 id="어떤경우에-사용하는것이-좋은가">어떤경우에 사용하는것이 좋은가?</h2>
+<ul>
+  <li>계층화된 데이터 표현할때 사용합니다. 목차, 디렉토리, 카테고리 등</li>
+</ul>
+
+<h2 id="이진트리를-설명하세요">이진트리를 설명하세요</h2>
+<ul>
+  <li>노드의 자식의 수가 2개로 이루어지는 트리를 이진트리라고 합니다. 이진트리는 검색,정렬 할 때 효율적입니다.</li>
+</ul>
+
+<h2 id="비트리는-내부적인-노드를-어떤것을-가지고-있는가">비트리는 내부적인 노드를 어떤것을 가지고 있는가?</h2>
+<h2 id="이진검색트리-에-대해서-설명해주세요">이진검색트리 에 대해서 설명해주세요</h2>
+<h2 id="이진검색트리와-비트리의-내부적인-차이는-">이진검색트리와 비트리의 내부적인 차이는 ?</h2>
+<h2 id="이진검색트리에서-가장-느린-검색이-되는-경우">이진검색트리에서 가장 느린 검색이 되는 경우</h2>
+
+<h2 id="동기비동기-란-무엇인가">동기/비동기 란 무엇인가?</h2>
+<ul>
+  <li>critical section(임계영역)에서 반환값을 기대할수 있는 경우를 동기화 라고 표현하고 반대의 경우를 비동기하고 표현합니다.</li>
+  <li>critical section은 독립성을 유지 해야합니다.</li>
+  <li>실행중인 critical section이 존재할때 종료후에 반환값을 기대하면 동기화된것이고 critical section 실행중에 값의 변화가 진행되면(공유) 비동기화라고 표현합니다.</li>
+</ul>
+
+<h2 id="동기화를-지원하는-자료구조는">동기화를 지원하는 자료구조는?</h2>
+<ul>
+  <li>백터,해쉬테이블, synchronizedList(),synchronizedSet(),synchronizedMap() 을 제공한다</li>
+  <li>현재는 ConcurrentHashMap, ConcurrentLinkedListQueue 의 성능이 더 좋다.</li>
+</ul>
+
+<h2 id="동기화를-지원하는-자료구조는-왜--언제-필요할까요">동기화를 지원하는 자료구조는 왜 , 언제 필요할까요?</h2>
+<ul>
+  <li>멀티쓰레드 환경에서 즉 쓰레드간 데이터를 공유해야할때 동기화된 (스레드세잎)한 자료구조가 필요합니다. 쓰레드끼리 공유데이터 접근시에 쓰레드세잎하지 않으면 데이터의 값이 예상치 못하게 변경되기 때문입니다.</li>
+</ul>
+
+<h2 id="spring">Spring</h2>
+<p>자바진형 프레임워크로 자바 베이직 라이브러리와 웹,앱을 위한 다양한 라이브러리가 제공됩니다. 또한 jdbc를 인터페이스로 다양한 DB를 ORM할수있도록 JPA,security 등 하위 프레임워크를 내포하고있어 개발자의 생산성을 돕습니다.</p>
+
+<p>그리고 DI,IoC등의 개념을 통해서 객체지향적 프로그램 지향하도록 설계된 프레임워크가 spring입니다.</p>
+
+<h2 id="di">DI</h2>
+<p>dependency Injection 으로 객체지향 원리중 DIP에 해당합니다. 객체내부에 동적으로 객체를 생성하는것이 아닌 객체의 인스턴스를 설정하고 생성자,set,필드 통해서 객체를 생성하는 방식입니다.</p>
+
+<h2 id="ioc">IoC</h2>
+<p>spring에서 Bean을 관리해주는 컨테이너 입니다. IoC에서 빈을 관리하고 애노테이션 스캔을 통해서 DI를 하게 되는데 의존객체가 주체가아닌 IoC 컨테이너에서 빈을 관리하기 때문에 IoC라는 명칭이 붙게 되었습니다.</p>
+
+<h2 id="aop">AoP</h2>
+<p>중복된 코드를 aspect를 이용해서 모듈화 할수있고 이를 특정 위치에 사용할수있는 방법이 AoP입니다. 
+  target, advice, PointCut으로 구성되어있습니다.</p>
+
+<h2 id="jpa">JPA</h2>
+<p>spring의 데이터베이스 연동하는 기능이며 객체스타일로 DB를 연동할수있습니다. 또한 영속성이라는 기능을 통해서 DB의 많은 접근을 하지 않아도 되는 이점이 존재하고, DB설정을 java로 설정할수있습니다.</p>
+
+<h2 id="mvc">MVC</h2>
+<p>model, view, controller 를 통해서 구성된 소프트웨어 디자인 패턴입니다. 각 계층을 통해서 명시적으로 업무를 분할 할수있는 장점이 있고 이를 통해서 업무를 분담할수있습니다. 확장성이 용이합니다. 유지보수 비용을 절감할 수 있습니다.</p>
+
+<p>동작과정</p>
+<ul>
+  <li>disPatherServlet에서 요청이 들어옴</li>
+  <li>핸들러매핑(핸들러조회(controller)) 한다.</li>
+  <li>핸들러를 사용할수있는 어댑터가 있는지  조회한다.</li>
+  <li>핸들러 어탭터 실행</li>
+  <li>핸들러 실행(controller가 실행됨)</li>
+  <li>controller 반환값을 핸들러 어탭터에 반환하고 어댑터는 dispatcherServlet에 modelAndView 반환</li>
+  <li>viewResolver 호출</li>
+  <li>viewResolver가 view에 맞는 객체로 변환하여 dispatcherSerlver으로 반환</li>
+  <li>dispatcherSerlver view에 반환</li>
+</ul>
+
+<h2 id="security">Security</h2>
+<p>인증과 허가를 담당하는 하위 프레임워크입니다.</p>
+
+<h2 id="쓰레드풀">쓰레드풀</h2>
+<ul>
+  <li>쓰레드풀을 요청시마다 생성할때 단점
+    <ol>
+      <li>스레드 교환시 컨텍스트 스위칭이 일어나 오버헤드가 발생합니다. 요청이들어올때마다 스레드를 생성하면 비용이 매우 비쌉니다. 또한 서버의 resource를 효율적으로 사용치 못합니다.</li>
+      <li>cpu,memory의 임계점을 넘는 요청이 들어오면 서버가 터질 수 있습니다.</li>
+    </ol>
+  </li>
+  <li>쓰레드풀을 요청시마다 생성할때 장점
+    <ol>
+      <li>동시 요청을 수행할수있습니다.</li>
+      <li>자원을 모두 소모할수있습니다.</li>
+    </ol>
+  </li>
+  <li>스레드풀 사용 장점
+    <ol>
+      <li>쓰레드풀은 이런 쓰레드를 보관 및 관리하는 기능입니다. 미리 생성 가능한 쓰레드의 최대치를 관리하며 쓰레드 대기,거절등을 수행할수있습니다. 이를통해 생성및 종료 하는 비용을 줄일수있습니다.(cpu비용절감)</li>
+      <li>쓰레드풀 최대치가 존재함으로 많은 요청이 들어와도 서버가 죽지 않고 기존 요청을 처리할수있습니다.</li>
+    </ol>
+  </li>
+  <li>스레드풀 사용 단점
+    <ol>
+      <li>스레드풀의 최적사이즈를 알기 어렵습니다. 너무 많으면 서버가 죽고 너무 적으면 서버 응답지연</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="ssr--csr">SSR &amp; CSR</h2>
+<ul>
+  <li>SSR : 서버사이드 렌더링으로 서버측에서 최종 HTML 구성하여 보내는 방법을뜻합니다.</li>
+  <li>CSR : 클라이언트 측에서 서버로 부터 받은 데이터를 가지고 클라이언트측에서 동적으로 페이지를 구성하는 방법입니다.</li>
+</ul>
+
+
+      <br/>
+      <br/>
+      <!--&lt;!&ndash; 블로그-하단-반응형 &ndash;&gt;-->
+      <!--<ins class="adsbygoogle"-->
+          <!--style="display:block; width:100%; height:300px;"-->
+          <!--data-ad-client="ca-pub-9134477021095729"-->
+          <!--data-ad-slot="2380354290"-->
+          <!--data-ad-format="auto"></ins>-->
+      <!--<script>-->
+      <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+      <!--</script>-->
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=면접 질문 리스트 & 답변&amp;url=http://localhost:4000/tip/2021/05/02/javaInterviewQuestion/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/tip/2021/05/02/javaInterviewQuestion/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="elyo"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>(기록하고 개발하고 기록하고 개발하고) x 10000</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/tip/2021/05/17/git-tip/" data-flip="title">
+    <span>git & github 정리</span>
+  </a>
+  <small><time datetime="2021-05-17T00:00:00+09:00">
+    17 May 2021
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="면접 질문 리스트 & 답변",this.page.identifier="/tip/2021/05/02/javaInterviewQuestion",this.page.url="http://localhost:4000/tip/2021/05/02/javaInterviewQuestion/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//elyo-dev-blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  <!--<div id="disqus_thread"></div>-->
+  <!--<script>-->
+
+      <!--/**-->
+       <!--*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.-->
+       <!--*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/-->
+      <!--/*-->
+      <!--var disqus_config = function () {-->
+      <!--this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable-->
+      <!--this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable-->
+      <!--};-->
+      <!--*/-->
+      <!--(function() { // DON'T EDIT BELOW THIS LINE-->
+          <!--var d = document, s = d.createElement('script');-->
+          <!--s.src = 'https://yoraths-dev-blog.disqus.com/embed.js';-->
+          <!--s.setAttribute('data-timestamp', +new Date());-->
+          <!--(d.head || d.body).appendChild(s);-->
+      <!--})();-->
+  <!--</script>-->
+  <!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+
+
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2020. by elyo</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://elyo9381.github.io/">elyo</a></code>
+  </p>
+</footer>
+
+    </main>
+    <!--<div class="right-side">-->
+  <!--<div class="ad-first">-->
+    <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+    <!--&lt;!&ndash; 블로그-상단-모바일 &ndash;&gt;-->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;width:100%;"-->
+         <!--data-ad-client="ca-pub-9134477021095729"-->
+         <!--data-ad-slot="6559875097"-->
+         <!--data-ad-format="auto"></ins>-->
+    <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+  <!--</div>-->
+<!--<br/>-->
+<!--<br/>-->
+  <!--<div class="ad-second">-->
+    <!--&lt;!&ndash; 블로그-스카이스크래퍼 &ndash;&gt;-->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;max-width:320px;width:100%;height:600px"-->
+         <!--data-ad-client="ca-pub-9134477021095729"-->
+         <!--data-ad-slot="6826803092"></ins>-->
+    <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+  <!--</div>-->
+<!--</div>-->
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">Elyo</a></h1>
+        <p>기록하며 기억하자</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ps/">PS</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-jongol/">jongol</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-boj/">boj</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-programers/">programes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/spring/">Spring</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-framework/">FrameWork</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-boot/">Boot</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-security/">Security</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-mvc/">MVC</a>
+             </li>
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/cs/">CS</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/cs-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/book/">Book</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/tip/">Tip</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-git/">Git</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-interview/">Interview</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="elyo"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>진심을 다해서</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/elyo9381">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:elyo9381@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://elyo9381.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-121347599-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

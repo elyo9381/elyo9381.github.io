@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 리팩터링 리뷰 - 2
+title: 리팩터링 리뷰 - 3
 subtitle: "spring, security"
 categories: spring
 tags: security
 comments: true
 ---
-> spring study
+> repactoring
 
 ## 리팩터링 해야할 시기 
   

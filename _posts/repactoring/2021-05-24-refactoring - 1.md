@@ -6,7 +6,7 @@ categories: spring
 tags: security
 comments: true
 ---
-> spring study
+> repactoring
 
 ## 리팩토링
   

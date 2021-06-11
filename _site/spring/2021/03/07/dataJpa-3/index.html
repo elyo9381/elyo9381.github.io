@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="datajpa-3">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>datajpa-3 &middot; Elyo</title>
+
+
+
+<meta name="description" content="
+  spring jpa study
+
+
+">
+<meta property="og:description" content="
+  spring jpa study
+
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/spring/2021/03/07/dataJpa-3/">
+<meta property="og:url" content="http://localhost:4000/spring/2021/03/07/dataJpa-3/">
+
+<link rel="alternate" type="application/atom+xml" title="Elyo Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/spring/2021/03/05/dataJpa-2/">
+
+
+
+  <link rel="next" href="http://localhost:4000/spring/2021/03/07/dataJpa-4/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-spring/2021/03/07/dataJpa-3" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        datajpa-3
+      
+    </h1>
+    
+    <p>spring, framework, jpa</p>
+    
+    <p class="post-date heading">
+      <time datetime="2021-03-07T00:00:00+09:00">07 Mar 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/spring/" data-flip="title">Spring</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/spring-framework/" data-flip="title">FrameWork</a>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+  <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+
+<!--<ins class="adsbygoogle myAd1190"-->
+    <!--data-ad-client="ca-pub-9134477021095729"-->
+    <!--data-ad-slot="6559875097"-->
+    <!--&gt;</ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+<br/>
+      <blockquote>
+  <p>spring jpa study</p>
+</blockquote>
+
+<hr />
+
+<h2 id="쿼리메소드-기능">쿼리메소드 기능</h2>
+
+<p>특정한 메소드를 작성하려면 어떻게 작성해야할까? <br />JpaRepository는 인터페이스인데 새로운 메소드를 작성하려면 구현체 class를 만들면 되는것일까??<br />새로운 구현체 클래스를 만들게 되면 기존에 find, findAll 등의 메소드 또한 다시 재정의해야한다. <br />이는 매우 힘든일이다. (왜? 기존 메소드는 스프링이 만들어주니까!!)</p>
+
+<p>그렇기 때문에 우리는 쿼리메소드 기능을 이용하여서 새로운 특정 메소드를 작성할 수 있다.</p>
+
+<p>순수 JPA로 만든 findByUsernameAndAgeGreaterThen()</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+    public List&lt;Member&gt; findByUsernameAndAgeGreaterThan(String username,int age) {
+        return em.createQuery("select m from Member m where m.username = :username and m.age &gt; :age")
+                .setParameter("username",username)
+                .setParameter("age",age)
+                .getResultList();
+    }
+</code></pre>
+</div>
+
+<p>test를 돌려보면</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Test
+  public void findByUsernameAndAgeGreaterThan() {
+      Member m1 = new Member("AAA", 10);
+      Member m2 = new Member("AAA", 20);
+      memberJpaRepository.save(m1);
+      memberJpaRepository.save(m2);
+      List&lt;Member&gt; result =
+  memberJpaRepository.findByUsernameAndAgeGreaterThan("AAA", 15);
+      assertThat(result.get(0).getUsername()).isEqualTo("AAA");
+      assertThat(result.get(0).getAge()).isEqualTo(20);
+      assertThat(result.size()).isEqualTo(1);
+}
+</code></pre>
+</div>
+
+<p><img src="https://slid-capture.s3.ap-northeast-2.amazonaws.com/public/capture_images/14a04d89bbc94c46bf2261d1bdebd519/e98effeb-6d68-4556-95db-530cbb49f499.png" alt="" title="SpringDataJpa - 3 image" /></p>
+
+<p>다음과 같이 sql이 나가는것을 알수있다. </p>
+
+<p>MemberRepository interface에서도 이와 같은 동일한 기능을 제공한다.<br />메소드 이름을 통해서 쿼리를 작성하는 기능을 제공하는데 코드상으로는 다음과 같다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public interface MemberRepository extends JpaRepository&lt;Member, Long&gt;{
+   List&lt;Member&gt; findByUsernameAndAgeGreaterThan(String username,int age);
+}
+</code></pre>
+</div>
+
+<p>jpql로 작성한 메소드와 동일한 결과를 도출한다. </p>
+
+<p>메소드 이름을 통한 쿼리작성은 다음과 같은 규칙이 존재한다. </p>
+
+<ul>
+  <li>조회: find…By, read…By , query…By, get…By</li>
+  <li>COUNT : count….By return ‘long’</li>
+  <li>EXISTS : exists…By return ‘boolean’</li>
+  <li>delete : delete…By return ‘long’</li>
+  <li>DISTINCT : findDistinct, findMemberDistinctBy</li>
+  <li>LIMIT : findFirst3, findFirst, findTop, findTop3<br />- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/ #repositories.limit-query-result</li>
+</ul>
+
+<p>스프링 데이터 JPA 공식 사이트에서 자세히 참고 하기 바란다.<br />(https://docs.spring.io/spring-data/jpa/docs/current/</p>
+
+<p>reference/html/#jpa.query-methods.query-creation)</p>
+
+<p><br /></p>
+
+<p>@ 메소드 이름을 통한 쿼리작성은 엔티티의 필드명과 인터페이스 메소드 명이 같아야하는점을 주의하자.</p>
+
+<h2 id="jpa-namedquery">JPA NamedQuery</h2>
+
+<p> - 실무에서 쓸일이없다. - </p>
+
+<p>애노테이션으로 쿼리를 등록해놓고 나중에 다시 불러다 쓸수있는 기능이다. </p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@NameQuery(name="Member.findByUsername",
+          query="select m from Member m where m.username = :username")
+</code></pre>
+</div>
+
+<p>장점 : 네임드 쿼리는 애플리케이션 로딩시점에 파싱하여 에러를 검증할수있음</p>
+
+<h2 id="레포지터리-쿼리직접-쿼리를-정의함">레포지터리 쿼리(직접 쿼리를 정의함)</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public interface MemberRepository extends JpaRepository&lt;Member, Long&gt;{
+  ...
+
+  @Query("select m from Member m where m.username = :username and m.age = :age")
+  List&lt;Member&gt; findUser(@Param("username") String username, @Param("age") int age);
+}
+</code></pre>
+</div>
+
+<p>장점 : 애플리케이션 로딩시점에 쿼리를 파싱하여 에러 검증할수있음(이름이 없는 네임드 쿼리라고 볼수있음)</p>
+
+<ul>
+  <li>실무에서 자주 쓰인다. -<br /><mark class="cdx-marker">간단한 쿼리는 네임드 쿼리를 사용하고 복잡한 쿼리는 레포지터리 쿼리를 사용한다.<br />동적 쿼리는 QueryDSL을 사용해라</mark></li>
+</ul>
+
+<h2 id="query-값-dto-조회">@Query, 값, Dto 조회</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public interface MemberRepository extends JpaRepository&lt;Member, Long&gt;{
+  ...
+
+  @Query("select m from Member m where m.username = :username and m.age = :age")
+  List&lt;Member&gt; findUser(@Param("username") String username, @Param("age") int age);
+
+  // 간단조회 
+  @Query("select m.username from Member m")
+  List&lt;Member&gt; findUsernameList();
+
+  // dto 조회 (dto가 존재해야한다.)
+  @Query("select new (멤버dto의 경로 입력 해야함)MemberDto(m.id, m.username, t.name) from Member m join m.team.t")
+  List&lt;MemberDto&gt; findMemberDto();
+
+}
+</code></pre>
+</div>
+
+<h2 id="파라미터-바인딩">파라미터 바인딩</h2>
+
+<p>위치기반과 이름기반이 존재하는데 이름기반을 무조건 써야합니다.!!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public interface MemberRepository extends JpaRepository&lt;Member, Long&gt; {
+
+  // 단건 조건
+  @Query("select m from Member m where m.username = :name")
+  Member findMembers(@Param("name") String username);
+  
+  //컬렉션 파라미터 바인딩
+  @Query("selecet m from Member m where m.username in :names")
+  List&lt;Member&gt; findByNames(@Param("names") List&lt;String names);
+}
+</code></pre>
+</div>
+
+<h2 id="반환-타입">반환 타입</h2>
+
+<ul>
+  <li>List<Member> findByUsername(String name); // 컬렉션</Member></li>
+  <li>Member findByUsername(String name); // 단건</li>
+  <li>Optional<Member> findByUsername(String name); // 단건 Optional</Member></li>
+</ul>
+
+<p>조회 결과가 많거나 없으면 ?</p>
+
+<p>결과 없음 :  빈 컬렉션 반환</p>
+
+<p>단건조회</p>
+
+<p>결과없음 : NULL반환</p>
+
+<p>결과가 2건 이상 : javax.persistence.NonUniqueResultException 예외 발생</p>
+
+<h2 id="순수-jpa-페이징과-정렬">순수 JPA 페이징과 정렬</h2>
+
+<p>JPA에서 페이징을 어떻게 할 것인가?</p>
+
+<ul>
+  <li>검색조건 : 나이가 10살</li>
+  <li>정렬조건 : 이름으로 내림차순</li>
+  <li>페이징 조건 : 첫번째 페이지, 페이지당 보여줄 데이터는 3건</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  public List&lt;Member&gt; findByPage(int age, int offset, int limit){
+    return em.createQuery("select m from Member m where m.age = :age order by m.username desc")
+        .setParameter("age", age)
+        .setFirstResult(offet)
+        .setMaxResult(limit)
+        .getResultList();
+  }
+
+  public long totalCount(int age){
+    returm em.createQurey("select count(m) from Member m where m.age = :age", Long.class)
+        .setParameter("age", age)
+        .getSingleResult();
+  }
+
+
+  --------------------------------------------------------
+  &lt;TestCode&gt;
+
+  @Test
+    public void paging() throws Exception {
+    //given
+      memberJpaRepository.save(new Member("member1", 10));
+      memberJpaRepository.save(new Member("member2", 10));
+      memberJpaRepository.save(new Member("member3", 10));
+      memberJpaRepository.save(new Member("member4", 10));
+      memberJpaRepository.save(new Member("member5", 10));
+      int age = 10;
+      int offset = 0;
+      int limit = 3;
+    //when
+      List&lt;Member&gt; members = memberJpaRepository.findByPage(age, offset, limit);
+      long totalCount = memberJpaRepository.totalCount(age);
+    //페이지 계산 공식 적용...
+    // totalPage = totalCount / size ...
+    // 마지막 페이지 ... // 최초 페이지 ..
+    //then
+      assertThat(members.size()).isEqualTo(3);
+      assertThat(totalCount).isEqualTo(5);
+    }
+
+</code></pre>
+</div>
+
+<p>순수 JPA로 페이징을 진행하려면 sql(JPQL)로 쿼리를 불러오고 이때 정렬과 검색 조건을 등록한다. 일반적인 쿼리를 생각한다.</p>
+
+<p>하지만 페이징에서는 sql의 방언을 지원하기 떄문에(JPA) offset,limit 를 통해서 정해진 규칙을 지켜야한다.</p>
+
+<p>그것은 setFirstResult(),setMamResult()이다.</p>
+
+<p>테스트코드를 봐보면 페이징만 끊어오고 페이징의 계산은 직접 구현해야함을 볼수있다.</p>
+
+<h2 id="스프링-데이터-jpa-페이징과-정렬">스프링 데이터 JPA 페이징과 정렬</h2>
+
+<p>결론적으로 말하자면 위의 순수JPA 페이징과 정렬의 구현에서 스프링이 많은걸 도움을 준다. 그래서 개발자는 실질적인 코드생성을 절약 할수있고 빠른 구현이 가능하다. 하지만 spring data가 만능은 아니니 순수JPA 또한 잘 숙지해야한다.</p>
+
+<p>페이징과 정렬 파라미터</p>
+<ul>
+  <li>org.springframework.data.domain.Sort : 정렬 기능</li>
+  <li>org.springframework.data.domain.Pageable : 페이징 기능(내부에 sort 포함)</li>
+</ul>
+
+<p>특별한 반환 타입</p>
+<ul>
+  <li>org.springframework.data.domain.Page : 추가 count 쿼리 결과를 포함하는 페이징</li>
+  <li>org.springframework.data.domain.Slice : 추가 count 쿼리 없이 다음 페이지만 확인 가능(내부적으로 limit+1 조회)</li>
+  <li>List(자바컬렉션):추가 count 쿼리 없이 결과만 반환</li>
+</ul>
+
+<p>페이징과 정렬 사용 예제</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> Page&lt;Member&gt; findByUsername(String name, Pageable Pageable); // count 쿼리 사용
+ Slice&lt;Member&gt; findByUsername(String name, Pageable Pageable); // count 쿼리 사용한함
+ List&lt;Member&gt; findByUsername(String name, Pageable Pageable); // count 쿼리 사용안함
+ List&lt;Member&gt; findByUsername(String name, Sort sort);
+
+ --------------------------------
+ [실행코드]
+
+  public interface MemberRepository extends JpaRepository&lt;Member, Long&gt;{
+    Page&lt;Member&gt; findByAge(int age, Pageble pageable);
+  }
+
+
+  ----------------------------------
+  [Test code]
+
+  //페이징 조건과 정렬 조건 설정
+  @Test
+  public void page() throws Exception {
+  //given
+    memberRepository.save(new Member("member1", 10));
+    memberRepository.save(new Member("member2", 10));
+    memberRepository.save(new Member("member3", 10));
+    memberRepository.save(new Member("member4", 10));
+    memberRepository.save(new Member("member5", 10));
+  //when
+    PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC,
+  "username"));
+    Page&lt;Member&gt; page = memberRepository.findByAge(10, pageRequest);
+  //then
+    List&lt;Member&gt; content = page.getContent(); //조회된 데이터 
+    assertThat(content.size()).isEqualTo(3); //조회된 데이터 수 
+    assertThat(page.getTotalElements()).isEqualTo(5); //전체 데이터 수 
+    assertThat(page.getNumber()).isEqualTo(0); //페이지 번호 
+    assertThat(page.getTotalPages()).isEqualTo(2); //전체 페이지 번호 
+    assertThat(page.isFirst()).isTrue(); //첫번째 항목인가? 
+    assertThat(page.hasNext()).isTrue(); //다음 페이지가 있는가?
+
+}
+</code></pre>
+</div>
+
+<p>두번째 파라미터로 받은 Pageable은 인터페이스다. 따라서 실제 사용할 때는 해당 인터페이스를 구현한 PageRequest 객체를 사용한다.</p>
+
+<p>PageRequest 생성자의 첫번째 파라미터에는 현재페이지, 두번째 파라미터는 조회할 데이터 수 , 추가적으로 정렬 정보또한 세번째 파라미터로 작성가능하다, 생략 가능하다.</p>
+
+<p><mark>페이저블 객체를 사용시에 주의할점이 존재한다.<br /> 예를들면 페치조인하여 데이터를 가져왔을때 계속 추가적인 페치조인의 count값을 들고 온다. 이때 count는 페치조인의 지속적이 여부는 필요없고 count를 할수있는 엔티티의 count만 한다면 최적화가 가능하다.</mark></p>
+
+<p>이럴때 페이저블 객체 사용하며 쿼리를 분리해낼수 있다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  @Query(value = "select m from Member m". 
+        countQuery = "select count(m.username) from Member m")
+  Page&lt;Member&gt; findMemberAllCountBy(Pageable pageable);
+
+  ------------------------------
+  [페이지를 유지하면서 엔티티를 DTO로 변환하기] // 엔티티를 어디든 제공하면 안되므로 ... DTO 변환 이유 하시겠죠?
+
+  Page&lt;Member&gt; page = memberRepository.findByAge(10,pageRequest);
+  page&lt;Member&gt; dtopage = page.map(m -&gt; new MemberDto());
+
+</code></pre>
+</div>
+
+<h2 id="벌크성-수정-쿼리">벌크성 수정 쿼리</h2>
+
+<p>JPA는 변경감지(dirty check)를 이용해서 update를 날릴수있다. 하지만 모든 어트리뷰트에 값을 변경하려면 쿼리를 날려야하고 이때 벌크성 수정 쿼리를 사용한다.</p>
+
+<p>순수 JPA를 이용한 벌크성 수정쿼리</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  public int bulkAgePlus(int age){
+    int resultCount = em.createQuery("update Member m set m.age = m.age + 1 where m.age &gt;= :age")
+      .setParameter("age", age)
+      .exexcuteUpate();
+
+    return resultCount;
+</code></pre>
+</div>
+
+<p>스프링 데이터 JPA</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  @Modifying
+  @Query("update Member m set m.age = m.age +1 where m.age &gt;= :age")
+  int bulkAgePlus(@Param("age") int age);
+</code></pre>
+</div>
+
+<p>벌크성 수정, 삭베 쿼리는 @Modifying 어노테이션을 사용</p>
+<ul>
+  <li>사용치 않으면 다음 예외 발생</li>
+  <li>org.hibernate.hql.internal.QueryExeutionRequestException: Not Supported for DML operations</li>
+  <li>벌크성 쿼리를 실행하고 나서 영속성 컨텍스트 초기화: @Modifying(clearAutoMatically = true)
+    <ul>
+      <li>이 옵션 없이 회원을 findById로 다시 조회하면 영속성 컨텍스트에 과거 값이 남아서 문제가 될수있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>벌크성 쿼리의 영속성 컨텍스트 문제!! 뭔지 기억하지</p>
+
+<h2 id="엔티티-그래프">엔티티 그래프</h2>
+
+<p>연관된 엔티티들을 SQL 한번에 조회하는 방법 »  페치조인</p>
+
+<h4 id="n--1-문제가-무엇이냐">n + 1 문제가 무엇이냐??</h4>
+<ul>
+  <li>지연로딩 사용시 연관된 엔티티를 조회하면 연관된 엔티티 조회 할때마다 조회 쿼리가 생성되어 발생된다.</li>
+  <li>A 엔티티에 연관된 B 엔티티가 100개라면 A 조회시 1번 B 조회시 100번의 쿼리가 발생하고 이를 n+1 문제이다.</li>
+</ul>
+
+<h4 id="n--1-문제를-해결하는-방법이-무엇이냐">n + 1 문제를 해결하는 방법이 무엇이냐??</h4>
+<ul>
+  <li>n+1를 해결하기 위해서는 연관된 엔티티 A,B를 한번에 조회해오면 주기적인 쿼리를 날릴일 일이 없어지고 n 번의 문제가 해결된다.</li>
+  <li>JPA에서는 fetch join이라는 기능으로 이를 해결할수 있다.</li>
+</ul>
+
+<p>페치조인은 다음과 같이 사용된다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  [순수 JPA]
+  @Query("select m from Member m left join fetch m.team")
+  List&lt;Member&gt; findMemberFetchJoin();
+
+  [스프링 데이터 JPA]
+  // 공통 메서드 오버라이드
+  @Override
+  @EntityGraph(attributePaths = {"team"})
+  List&lt;Member&gt; findAll();
+
+  //JPQL + 엔티티 그래프
+  @EntityGraph(attributePaths = {"team"})
+  @Query("select m from Member m")
+  List&lt;Member&gt; findMemberEntityGraph();
+
+  //메서드 이름으로 쿼리에서 특히 편리하다.
+  @EntityGraph(attributePaths = {"team"})
+  List&lt;Member&gt; findByUsername(@Param("username") String username)
+
+</code></pre>
+</div>
+
+
+      <br/>
+      <br/>
+      <!--&lt;!&ndash; 블로그-하단-반응형 &ndash;&gt;-->
+      <!--<ins class="adsbygoogle"-->
+          <!--style="display:block; width:100%; height:300px;"-->
+          <!--data-ad-client="ca-pub-9134477021095729"-->
+          <!--data-ad-slot="2380354290"-->
+          <!--data-ad-format="auto"></ins>-->
+      <!--<script>-->
+      <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+      <!--</script>-->
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=datajpa-3&amp;url=http://localhost:4000/spring/2021/03/07/dataJpa-3/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/spring/2021/03/07/dataJpa-3/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="elyo"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>(기록하고 개발하고 기록하고 개발하고) x 10000</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/05/17/spring-ioc-17-AOP(4)/" data-flip="title">
+    <span>spring AOP-4(spring AOP)</span>
+  </a>
+  <small><time datetime="2021-05-17T00:00:00+09:00">
+    17 May 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/03/09/QueryDsl-2/" data-flip="title">
+    <span>querydsl</span>
+  </a>
+  <small><time datetime="2021-03-09T00:00:00+09:00">
+    09 Mar 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/03/08/QueryDsl-1/" data-flip="title">
+    <span>querydsl</span>
+  </a>
+  <small><time datetime="2021-03-08T00:00:00+09:00">
+    08 Mar 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="datajpa-3",this.page.identifier="/spring/2021/03/07/dataJpa-3",this.page.url="http://localhost:4000/spring/2021/03/07/dataJpa-3/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//elyo-dev-blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  <!--<div id="disqus_thread"></div>-->
+  <!--<script>-->
+
+      <!--/**-->
+       <!--*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.-->
+       <!--*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/-->
+      <!--/*-->
+      <!--var disqus_config = function () {-->
+      <!--this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable-->
+      <!--this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable-->
+      <!--};-->
+      <!--*/-->
+      <!--(function() { // DON'T EDIT BELOW THIS LINE-->
+          <!--var d = document, s = d.createElement('script');-->
+          <!--s.src = 'https://yoraths-dev-blog.disqus.com/embed.js';-->
+          <!--s.setAttribute('data-timestamp', +new Date());-->
+          <!--(d.head || d.body).appendChild(s);-->
+      <!--})();-->
+  <!--</script>-->
+  <!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+
+
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2020. by elyo</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://elyo9381.github.io/">elyo</a></code>
+  </p>
+</footer>
+
+    </main>
+    <!--<div class="right-side">-->
+  <!--<div class="ad-first">-->
+    <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+    <!--&lt;!&ndash; 블로그-상단-모바일 &ndash;&gt;-->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;width:100%;"-->
+         <!--data-ad-client="ca-pub-9134477021095729"-->
+         <!--data-ad-slot="6559875097"-->
+         <!--data-ad-format="auto"></ins>-->
+    <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+  <!--</div>-->
+<!--<br/>-->
+<!--<br/>-->
+  <!--<div class="ad-second">-->
+    <!--&lt;!&ndash; 블로그-스카이스크래퍼 &ndash;&gt;-->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;max-width:320px;width:100%;height:600px"-->
+         <!--data-ad-client="ca-pub-9134477021095729"-->
+         <!--data-ad-slot="6826803092"></ins>-->
+    <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+  <!--</div>-->
+<!--</div>-->
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">Elyo</a></h1>
+        <p>기록하며 기억하자</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ps/">PS</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-jongol/">jongol</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-boj/">boj</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-programers/">programes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/spring/">Spring</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-framework/">FrameWork</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-boot/">Boot</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-security/">Security</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-mvc/">MVC</a>
+             </li>
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/cs/">CS</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/cs-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/book/">Book</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/tip/">Tip</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-git/">Git</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-interview/">Interview</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="elyo"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>진심을 다해서</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/elyo9381">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:elyo9381@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://elyo9381.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-121347599-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
