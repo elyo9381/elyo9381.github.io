@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 리팩터링 리뷰 - 2
+title: 리팩터링 리뷰 - 3
 subtitle: "spring, security"
 categories: spring
 tags: security
