@@ -42,6 +42,7 @@ comments: true
 
   -  rabbitmq / 카프카 두 종류가 나와있다. 
   -  어떠한 queue서버에 메시지를 보내고 특정 topic이 발견되었을시 리시버를 통해서 받을수있는 시스템이다. 
+  -  rabbimq 예제는 동작과정을 이해를 못했고.... 예제도 못해봤다...
 
 ## 5. 분산환경에서 client개발
 
@@ -51,6 +52,13 @@ comments: true
     - REST 
   - FeignClient(집중)
     - Declarative REST Client 
-    -  
+    - 어떤 클라이언트의 요청을 페인 클라이언트가받고 페인클라이언트가 해당 요청을 수행하게 됩니다. 
+      - 일종의 로드밸런서 입니다. 
+      - 
+    - web service 클라이언트를 보다 쉽게 작성할 수 있도록 도와줍니다. 
+    - 인터페이스를 작성하고 어노테이션을 붙여주면 세부적인 내용없이 사용할 수 있기 때문에 코드 복잡도가 낮아집니다. 
+  
 
+  - eureka와 feignClient를 연동하면 편리하다 
+    - why? feignClient(내가 요청한 API)를 몰라도 eureka에 등록한 이름 정보만으로 쉽게 해당 API를 불러올수있습니다. 
 
