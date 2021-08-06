@@ -50,7 +50,7 @@ google_analytics:    UA-121347599-1
 disqus_shortname:    elyo-dev-blog
 
 # This text will appear in the footer of every page. Markdown enabled.
-copyright:           '&copy; 2020. by elyo'
+copyright:           '&copy; 2021. by elyo'
 
 # Format of the permalinks
 permalink:           pretty

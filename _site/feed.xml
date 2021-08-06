@@ -6,306 +6,9 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 06 Aug 2021 11:54:30 +0900</pubDate>
-    <lastBuildDate>Fri, 06 Aug 2021 11:54:30 +0900</lastBuildDate>
+    <pubDate>Fri, 06 Aug 2021 15:53:22 +0900</pubDate>
+    <lastBuildDate>Fri, 06 Aug 2021 15:53:22 +0900</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
-    
-      <item>
-        <title>resume</title>
-        <description>&lt;h2 id=&quot;jenkins&quot;&gt;jenkins&lt;/h2&gt;
-
-&lt;p&gt;jenkins는 속된말로 노예라고 불립니다
-  여러가지 일을 대신 수행하기 때문입니다.&lt;/p&gt;
-
-&lt;p&gt;지속적인 통합/지속적 제공 즉 CICD를 수행을 위해서 자주 사용됩니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;지속적인 통합 : 프로그램 코드를 git등을 이용해서 새로운 코드 변경 사항을 정기적으로 통합합니다.(ex n명의 개발자 빌드 및 데스트 통합)&lt;/li&gt;
-  &lt;li&gt;지속적 제공 : 운영중인 프로그램서버 , 통합 개발 브런치에 자동으로 업로드 되는것을 의미 합니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;### 다음과정으로 jenkins를 알아보겠습니다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;AWS(ubuntu)를 이용한 2대의서버 개설&lt;/li&gt;
-  &lt;li&gt;1대는 젠킨스 서버, 1대는 springboot배포서버(실행서버)&lt;/li&gt;
-  &lt;li&gt;젠킨스 서버에 도커,젠킨스,git,자바 설치&lt;/li&gt;
-  &lt;li&gt;배포서버에 도커, 자바 설치&lt;/li&gt;
-  &lt;li&gt;젠킨스 서버에서 젠킨스 실행후 설정&lt;/li&gt;
-  &lt;li&gt;배포서버와 젠킨스서버 ssh연동&lt;/li&gt;
-  &lt;li&gt;젠킨스 서버와 git연동 및 확인&lt;/li&gt;
-  &lt;li&gt;젠킨스에서 git webhook을 통해 자동으로 push를 인지하는 webhook 설정&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;1-awsubuntu를-이용한-2대의서버-개설&quot;&gt;1. AWS(ubuntu)를 이용한 2대의서버 개설&lt;/h2&gt;
-
-&lt;p&gt;우선 젠킨스서버와 배포서버를 AWS를 이용해서 개설 했습니다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;AWS에 접속후 인스턴스 생성&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;t2.medium(2cpu,4memory), t2.micro(1cpu,1memory)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;t2.medium 서버는 젠킨스서버로 활용될것입니다.&lt;/li&gt;
-  &lt;li&gt;ssh를 사용할것이므로 키는 잘 받아주시기 바랍니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-1대는-젠킨스-서버-1대는-springboot배포서버실행서버&quot;&gt;2. 1대는 젠킨스 서버, 1대는 springboot배포서버(실행서버&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;젠킨스 서버는 도커,젠킨스,git,자바 등을 설치하기에 프리티어(t2.micro)보다 좋은 성능을 선택하였습니다.&lt;/li&gt;
-  &lt;li&gt;t2.micro는 배포 서버로 활용될것입니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3-젠킨스-서버에-도커젠킨스git자바-설치&quot;&gt;3. 젠킨스 서버에 도커,젠킨스,git,자바 설치&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ssh를 이용하여 젠킨스 서버에 접속합니다.&lt;/li&gt;
-  &lt;li&gt;java, docker, jenkins를 설치합니다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;설치하기전에 기본적으로 apt update &amp;amp; apt upgrade를 먼저 진행합니다.&lt;/p&gt;
-
-&lt;p&gt;### 자바 설치 
-  자바 설치를 위해 다음과 같이 터미널에 작성해주세요&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo apt install openjdk-11-jdk 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### &lt;code class=&quot;highlighter-rouge&quot;&gt;도커 설치&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;### 필수 패키지 설치&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### GPG  key 인증&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;ok가 나오면 됩니다.&lt;/p&gt;
-
-&lt;p&gt;### docker repository 등록
-  아키텍쳐에 맞춰서 docker repository를 등록합니다. 아키텍처 확인은 arch를 터미널에 입력하면 됩니다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  arch
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo add-apt-repository \
-  &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) \
-  stable&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;~~블라블라 &lt;br /&gt;
-  Reading package lists… Done&lt;/p&gt;
-
-&lt;p&gt;이라고 출력되면 정상입니다.&lt;/p&gt;
-
-&lt;p&gt;### apt docker 설치&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install docker-ce docker-ce-cli containerd.io
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker -v&lt;/code&gt; 를 통해서 확인해봅니다.  &lt;br /&gt;
-  Docker version ~~ 라고 나오면 잘설치 된겁니다.&lt;/p&gt;
-
-&lt;p&gt;### 도커 실행
-  우분투 시스템이 도커를 인지해야합니다.
-  다음과 같은 명령어로 실행하고 잘 실행되었는지 확인합니다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo systemctl enable docker &amp;amp;&amp;amp; service docker start
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  service docker status
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### &lt;code class=&quot;highlighter-rouge&quot;&gt;젠킨스 설치&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;### Jenkins 설치를 위해 Repository key 추가&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### 서버의 sources.list에 Jenkins 패키지 저장소를 추가&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ &amp;gt; \
-  /etc/apt/sources.list.d/jenkins.list'
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### 패키지 인덱스 정보 업데이트&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo apt-get update
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### 젠킨스 설치&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo apt-get install jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### 젠킨스 실행&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo systemctl start jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### 젠킨스 실행확인&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo systemctl status jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### jenkins 포트변경
-  Jenkins를 실행시켰을 때 기본적으로 8080 포트에서 동작합니다. 하지만 Spring Project의 경우 기본 포트가 8080이기 때문에 중복되어 불편할 수 있음으로 Jenkins 포트를 9090포트로 바꾸어 주도록 하겠습니다.(우리는 젠킨스서버에 배포할것은 아니여서 상관없지만.. 연습으로.. ㅎ)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo vi /etc/default/jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;vi를 통해서 해당 파일에 들어가면 
-  HTTP_PORT=8080을 9090으로 변경합니다.&lt;/p&gt;
-
-&lt;p&gt;그리고 이때 젠킨스를 다시 실행해야합니다. 변경된 내용이 적용되도록&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo systemctl restart jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;### 방화벽 설정&lt;/p&gt;
-
-&lt;p&gt;ufw를 이용해서 방화벽 설정을 합니다. ufw명령어가 안듣는다면 설치해야합니다.  &lt;br /&gt;
-  인터넷에 설치방법을 확인하고 옵니다.&lt;/p&gt;
-
-&lt;p&gt;ufw를 이용하여 나의 9090을 접근가능하게 열어둡니다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo ufw allow 9090
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;다음의 명령어를 입력하시고&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo ufw status
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;9090포트의 여부를 확인합니다.&lt;/p&gt;
-
-&lt;p&gt;### AWS에서 젠킨스 서버 port 열기
-  우리는 AWS를 이용하므로 AWS 콘솔(웹)에서 젠킨스 서버에 들어갈수있도록 보안설정을 해야합니다.&lt;/p&gt;
-
-&lt;p&gt;우리는 여기서 젠킨스 서버의 보안그룹을 확인해야합니다.
-  EC2대시보드에서 젠킨스 서버의 보안 그룹이름을 확인합니다.&lt;/p&gt;
-
-&lt;p&gt;EC2대시보드 -&amp;gt; 네트워크및 보안그룹 -&amp;gt; 보안그룹  &lt;br /&gt;
-  로 들어가서 해당 보안그룹을 들어가고 여기서 인바운드 규칙을 설정해야합니다.&lt;/p&gt;
-
-&lt;p&gt;인바운드 규칙에서 edit inbound를 클릭하시고 9090포트를 추가합니다. 그리고 내 IP로 설정합니다.&lt;/p&gt;
-
-&lt;p&gt;### 젠킨스(웹에서 계정등록)&lt;/p&gt;
-
-&lt;p&gt;AWS의 퍼블릭IP로 9090 포트로 들어갑니다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  13.125.12.164:9090 
-  (이건 예시입니다.)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;계정 등록은 타 블로그를 잡고 하세요&lt;/p&gt;
-
-&lt;h2 id=&quot;4배포-서버에-도커-설치&quot;&gt;4.배포 서버에 도커 설치&lt;/h2&gt;
-&lt;p&gt;도커,자바 설치는 위와같이 하면된다.&lt;/p&gt;
-&lt;h2 id=&quot;5젠킨스-서버에서-젠킨스-실행후-설정&quot;&gt;5.젠킨스 서버에서 젠킨스 실행후 설정&lt;/h2&gt;
-&lt;p&gt;젠킨스 웹에서 계정 등록하는 방법이다.&lt;/p&gt;
-
-&lt;p&gt;아래블로그를 참고했으나 내가 겪은 문제가 발생했었다. 이를 참고하시기바랍니다. 아래 목록에 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://velog.io/@haeny01/AWS-Jenkins%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Docker-x-SpringBoot-CICD-%EA%B5%AC%EC%B6%95&quot;&gt;참고 블로그&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;6-배포서버와-젠킨스서버-ssh-연결&quot;&gt;6. 배포서버와 젠킨스서버 ssh 연결&lt;/h2&gt;
-&lt;p&gt;젠킨스 서버에 젠킨스 폴더는&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  /var/lib/jenkins
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;로 구성되어있다. 
-  우리는 여기에 /var/lib/jenkins/.ssh 파일을 만들고 ssh 설정을 할것이다.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  cd /var/lib/jenkins/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;이동한다.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo mkdir -p ./ssh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;를 실행한다.&lt;/p&gt;
-
-&lt;p&gt;ssh명령을 통해서 ssh 키를 만들어야한다.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  sudo ssh-keygen -t rsa -C &quot;jenkins&quot; -m PEM -P &quot;&quot; -f /var/lib/jenkins/.ssh/id_rsa
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;ssh-keygen : ssh키를 만들기 위한 명령어 &lt;br /&gt;
-  - t : 암호화 타입 정할수있습니다. rsa로 해야함 &lt;br /&gt;
-  - c : 주석을 입력할수있습니다. 이게 필요한게 특정 서버를 명시하는 역할입니다. &lt;br /&gt;
-  - m : 키 확장자를 설정 pem키로 설정하는것입니다.  &lt;br /&gt;
-  - p : 암호를 없는것으로 설정하기위한 옵션 &lt;br /&gt;
-  - f : 생성 폴더를 지정합니다. + 키 이름&lt;/p&gt;
-
-&lt;p&gt;이렇게 생성한 id_rsa키를 공개키인 id_rsa.pub은 배포서버에 입력합니다.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  vi ~/.ssh/authorized_keys
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;7-젠킨스-서버와-git연동-및-확인&quot;&gt;7. 젠킨스 서버와 git연동 및 확인&lt;/h2&gt;
-
-&lt;p&gt;아래블로그를 참고했으나 내가 겪은 문제가 발생했었다. 이를 참고하시기바랍니다. 아래 목록에 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://velog.io/@haeny01/AWS-Jenkins%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Docker-x-SpringBoot-CICD-%EA%B5%AC%EC%B6%95&quot;&gt;참고 블로그&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;8-젠킨스에서-git-webhook을-통해-자동으로-push를-인지하는-webhook-설정&quot;&gt;8. 젠킨스에서 git webhook을 통해 자동으로 push를 인지하는 webhook 설정&lt;/h2&gt;
-
-&lt;p&gt;아래블로그를 참고했으나 내가 겪은 문제가 발생했었다. 이를 참고하시기바랍니다. 아래 목록에 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://velog.io/@haeny01/AWS-Jenkins%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Docker-x-SpringBoot-CICD-%EA%B5%AC%EC%B6%95&quot;&gt;참고 블로그&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;9-겪은-문제&quot;&gt;9. 겪은 문제&lt;/h2&gt;
-
-&lt;p&gt;CICD를 실습하면서 겪은 문제는 다음과 같다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;젠킨스서버와 배포서버의 ssh연결이 안됬었다.
-    &lt;ul&gt;
-      &lt;li&gt;이 문제는 아래와 같은 명령어를 통해서 해결할수있었다.
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   sudo ssh-keygen -t rsa -C &quot;jenkins&quot; -m PEM -P &quot;&quot; -f /var/lib/jenkins/.ssh/id_rsa
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;일반적으로 ssh-keygen 하면 안되가지고 뭐가 문제인지는 모르지만 -C 옵션을 주고 해결되었다.&lt;/li&gt;
-      &lt;li&gt;또한 이렇게 파일을 생성하고 나니 디렉터리의 그룹이 jenkins가 아니라 root여서 jenkins가 실질적으로 해당 폴더를 못 사용한것이 아닐까 생각하기도 하여&lt;/li&gt;
-      &lt;li&gt;/var/lib/jenkins/.ssh/id_rsa의 그룹을 모두 jenkins로 바꾸었다.&lt;/li&gt;
-      &lt;li&gt;그리고 jenkins 유저가 모든 권한을 사용하기 위해서 sudoers에 jenkins유저를 등록하였다. ALL로&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;젠킨스에서 springboot jar파일 도커 이미지로 만들지 못했었다.
-    &lt;ul&gt;
-      &lt;li&gt;젠킨스에서 github poll을 진행하고 이를 통해서 Dokerfile을 통해 이미지를 만들려고 할때 문제가 발생하였다.&lt;/li&gt;
-      &lt;li&gt;원인은 jar 파일이 2개생겨서 이고 springboot 2.5 부터는 기본적으로 jar파일이 하나 더생기는데 이를 build.gradle에서 막아야한다.
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  jar {
-enabled = false
-  }
-&lt;/code&gt;&lt;/pre&gt;
-        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;을 통해서 막을수있다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Wed, 04 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/tip/2021/08/04/resume/</link>
-        <guid isPermaLink="true">http://localhost:4000/tip/2021/08/04/resume/</guid>
-        
-        <category>resume</category>
-        
-        
-        <category>tip</category>
-        
-      </item>
     
       <item>
         <title>jenkins 간단 사용법</title>
@@ -5246,6 +4949,42 @@ public Authentication attemptAuthentication(HttpServletRequest request, HttpServ
         <pubDate>Sun, 23 May 2021 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/spring/2021/05/23/spring-security-3-JWT/</link>
         <guid isPermaLink="true">http://localhost:4000/spring/2021/05/23/spring-security-3-JWT/</guid>
+        
+        <category>security</category>
+        
+        
+        <category>spring</category>
+        
+      </item>
+    
+      <item>
+        <title>시큐리티 OAuth login</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;spring study&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;security&quot;&gt;security&lt;/h1&gt;
+
+&lt;p&gt;oauth2를 위한 버튼, url 등이 필요하며 응답을 받을 url을 각 페이지에서 설정해야한다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  .and()
+    .oauth2Login()
+    .loginPage(&quot;/login&quot;)
+    .userInfoEndpoint()
+    .userService(principalOauth2UserService);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;oauth2 사용을 위한 DefaultOAuth2UserService (loadUser메서드)&lt;/p&gt;
+
+&lt;p&gt;Authentication 객체가 가질수있는 2가지 타입&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UserDetails&lt;/li&gt;
+  &lt;li&gt;OAuth2User&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 20 May 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/spring/2021/05/20/spring-security-2/</link>
+        <guid isPermaLink="true">http://localhost:4000/spring/2021/05/20/spring-security-2/</guid>
         
         <category>security</category>
         
