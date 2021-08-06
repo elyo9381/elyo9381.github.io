@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
+<meta property="og:title" content="spring cloud study - 1">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>spring cloud study - 1 &middot; Elyo</title>
+
+
+
+<meta name="description" content="
+  spring study
+
+
+">
+<meta property="og:description" content="
+  spring study
+
+
+">
+
+
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/spring/2021/07/12/spring-cloud-1/">
+<meta property="og:url" content="http://localhost:4000/spring/2021/07/12/spring-cloud-1/">
+
+<link rel="alternate" type="application/atom+xml" title="Elyo Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/spring/2021/07/06/refactoring-7/">
+
+
+
+  <link rel="next" href="http://localhost:4000/2021/07/13/algoStudy-1/">
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Lato', 'Sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Lato', 'Sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
+      
+
+<article id="post-spring/2021/07/12/spring-cloud-1" class="post" role="article">
+  <header>
+    <h1 class="post-title">
+      
+        spring cloud study - 1
+      
+    </h1>
+    
+    <p>spring, cloud</p>
+    
+    <p class="post-date heading">
+      <time datetime="2021-07-12T00:00:00+09:00">12 Jul 2021</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/spring/" data-flip="title">Spring</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <span>Cloud</span>
+
+    </p>
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+  <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+  
+    <div class="markdown-body">
+
+
+<style>
+.myAd1190 { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .myAd1190 { display: none; } }
+</style>
+
+<!--<ins class="adsbygoogle myAd1190"-->
+    <!--data-ad-client="ca-pub-9134477021095729"-->
+    <!--data-ad-slot="6559875097"-->
+    <!--&gt;</ins>-->
+<!--<script>-->
+<!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+<!--</script>-->
+<br/>
+      <blockquote>
+  <p>spring study</p>
+</blockquote>
+
+<h1 id="스프링-클라우드">스프링 클라우드</h1>
+
+<p>실무에서는 하나의 서버로 관리하기 힘들다.</p>
+
+<p>데이터 처리관점 및 다양한 관점에서 클라우드 또는 네트워크를 구성해야한다.</p>
+
+<ul>
+  <li>HA : 고 가용성</li>
+  <li>Resilience : 복원력</li>
+</ul>
+
+<h2 id="1-웹서비스-확장-전략">1. 웹서비스 확장 전략</h2>
+
+<ul>
+  <li>실무 개발 유형
+    <ul>
+      <li>솔루션 : db 접근제어, 암호화, 사용자(비즈니스 관점) ex) b2b 시스템을 대체적으로 말한다.</li>
+      <li>SI : 회사의 특정 기능을 수정하는 개발이다.</li>
+      <li>서비스 : 내부적으로 기능을 개발하고 사용자에게 전달하는 관점, 항상 서비스 되어야함</li>
+    </ul>
+  </li>
+  <li>스프링이 꼭 필요한것은 아니다. 각 상황에 맞게(기업의) 확장 전략을 선택해야한다.</li>
+</ul>
+
+<h2 id="2-클라우드가-필요한-서비스">2. 클라우드가 필요한 서비스?</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>두가지 경우로 나눠 볼수있다. 
+</code></pre>
+</div>
+
+<ul>
+  <li>스케일업을 통한 서비스 확장
+    <ul>
+      <li>scale-up : 컴퓨터의 자원을 늘리는 확장</li>
+      <li>무중단을 위해서는 높은 자원보다 끊기지 않는 상황이 필요하다.</li>
+    </ul>
+  </li>
+  <li>스케일 아웃을 통한 서비스 확장
+    <ul>
+      <li>scale-out : 컴퓨터의 자원은 동일하고 여러대의 컴퓨터를 사용하는 방법</li>
+      <li>장애 대응에 효율적이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-서버-부하-분산-네트워크">3. 서버 부하 분산 네트워크</h2>
+
+<ul>
+  <li>서버 : 무언가를 제공하는 대상</li>
+  <li>부하 : Load =&gt; 많은 요청이 들어온(요구된) 상황</li>
+  <li>분산 : 스케일아웃(분산) 나눠서 하는것(흩어짐)
+    <ul>
+      <li>통계값과 평균값의 차이인 편차를 제곱하여 얻은 값들의 산술 평균</li>
+    </ul>
+  </li>
+  <li>네트워크 : 통신 설비를 갖춘 컴퓨터를 이용해 서로 연결시켜주는 조직이나 체계</li>
+</ul>
+
+<h2 id="4-dns-서버-실습">4. DNS 서버 실습</h2>
+
+<ul>
+  <li>spring boot 웹서버 예제를 만들어 간단하게 controller를 만들어봅니다.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  @GetMapping("/")
+  public String hello(){
+      return " hi~~~~ man ";
+  }
+</code></pre>
+</div>
+
+<p>다음과 같은 컨트롤러를 통해서 웹서버의 응답을 받을수있습니다.</p>
+
+<p>그리고 local은 localhost:8080~~ 를 통해서 응답받을수 있는데, <br />
+  이를 다른 DNS를 지정하고 싶다면</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  sudo vim /etc/hosts 
+</code></pre>
+</div>
+
+<p>파일을 수정하면된다.</p>
+
+<h2 id="5-dns-매핑-및-웹서버-연동">5. DNS 매핑 및 웹서버 연동</h2>
+
+<p>WellKnown port 가 주어진다.</p>
+
+<p>하지만 이는 권한과 연결된다.</p>
+
+<p>클라이언트는 80포트로 웹서버에 들어오면 웹서버는 8080포트로 스프링부트와 연결된다.</p>
+
+<p>웹서버와 api(스프링부트)의 권한이 다르기 때문에 포트가 다르다.</p>
+
+<p>우리가 만든 API서버는 루트 권한을 주지 않아도 보안이슈없이 사용할수있게 된다.</p>
+
+<ul>
+  <li>DNS와 HTTPS
+    <ul>
+      <li>최근 대형 서비스들은 https를 사용하는데 인증서를 구매해야한다.</li>
+      <li>wild 카드 인증서 *.도메인.com 이라면 dot이 2개일때만 지원가능하다.</li>
+      <li>그래서 test-a.domain.com // dev-a.domain.com등으로 사용하는 팁이있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="6-virtual-ip-와-dns">6. virtual IP 와 DNS</h2>
+
+<ul>
+  <li>무중단을 위해서 사용하는것이 virtual IP를 사용한다. (VIP라도 명하기도 함)</li>
+  <li>vip는 로드밸런싱의 역할을 수행한다.</li>
+</ul>
+
+<ol>
+  <li>외부에서 여러가지 요청이 올수 있습니다.</li>
+  <li>여러가지 요청이 들어왔을시 이를 나눠줄수있는 (분산) 방법은 DNS의 방법이 있습니다.</li>
+  <li>DNS을 기준으로 분산처리를 할수있는데 이또한 엄청난 요청이 온다면?</li>
+  <li>virtual IP 를 설정하고 하여 각 기능을 수행하는 API로 요청을 전달하여 분산할수있습니다.</li>
+  <li>이렇게 되면 요청을 분산하는 서버가 존재하고 논리적으로 이를 다른 포트에 연결해주는(API)에 전송할수있습니다.</li>
+  <li></li>
+</ol>
+
+<h2 id="7-읽기-요청-부하-분산">7. 읽기 요청 부하 분산</h2>
+
+<ul>
+  <li>외부의 여러가지 요청 또한 세분화 할 수 있습니다.</li>
+  <li>
+    <p>읽기, 쓰기 등등 여러가지 존재합니다.</p>
+  </li>
+  <li>같은 요청이 반복적으로 들어온다면 ?
+    <ul>
+      <li>동일한 요청을 처리하는 방법은 cache입니다.</li>
+      <li>캐시 : 요청을 중복되지 않게 저장하고 만약에 동일한 요청이 오면 DB에 접근하지 않고 저장한 내용을 보여주는것</li>
+    </ul>
+  </li>
+  <li>로드밸런싱을 통한 여러대의 API가 존재한다면 ? 캐시의 내용이 공유되지 않아서 분산이 잘되지 않을수 있습니다.
+    <ul>
+      <li>데이터의 정합성을 보장하지 못함</li>
+    </ul>
+  </li>
+  <li>
+    <p>위와같은 경우는 캐시서버를 따로 두는 해법이 존재한다. (레디스, 멤캐쉬 등)</p>
+  </li>
+  <li>
+    <p>로컬캐시는 정적인 이미지나 특정 api에 대한 요청을 수행하고 다른것은 별도의 캐시서버를 두는게 일반적입니다.</p>
+  </li>
+  <li>읽기 요청 부하 분산의 가장 중요한 점은 DB에 어떻게 적은 접근을 할까? 입니다.</li>
+</ul>
+
+<h2 id="8-클러스터링과-레플리카">8. 클러스터링과 레플리카</h2>
+
+<ul>
+  <li>
+    <p>7.챕터의 노력에도 불구하고 물리적인 DB에 접근(요청)이 많아 문제가 존재합니다.</p>
+  </li>
+  <li>
+    <p>그렇다면 DB를 스케일아웃합니다. 이를 HA라고 합니다.</p>
+  </li>
+  <li>
+    <p>하나의 방법인 클러스터링은 마스터노드와 네트워크 노드를 구성하고 하위의DB서버에게 분별된 요청을 수행하게 하는것입니다.</p>
+  </li>
+  <li>
+    <p>다른 방법인 레플리카는 db의 모든 것을 복제해서 여러개를 놓는것입니다.</p>
+  </li>
+</ul>
+
+<h2 id="9-샤딩">9. 샤딩</h2>
+
+<ul>
+  <li>클러스터링이 좋은데 비용을 고려해야한다.</li>
+  <li>
+    <p>클러스터링은 모든것을 공유하니 고비용이다.</p>
+  </li>
+  <li>범위를 지정해서 DB를 사용하는것이 샤딩입니다.</li>
+  <li>데이터베이스의 데이터를 기준으로 나누는것
+    <ul>
+      <li>기준이 있어야하는데 기준은 날짜,DB수,다양한 조건으로 가능하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="10-쓰기-요청-분산">10. 쓰기 요청 분산</h2>
+
+<ul>
+  <li>업로드가 오래 걸려 조회서비스가 안된다면..?
+    <ul>
+      <li>upload 서버를 따로 두는 방법이 존재합니다.</li>
+    </ul>
+  </li>
+  <li>다수의 업로드서버가 존재한다면 또 성능이 나오지 않을것입니다.</li>
+  <li>
+    <p>이러한 무거운 요청을은 폴링과 콜백이벤트를 통해서 처리 해야합니다.</p>
+  </li>
+  <li>스프링에서 이벤트를 처리할수있는 eventListener를 제공합니다.</li>
+</ul>
+
+<p>처리과정</p>
+<ol>
+  <li>controller 에서 특정 기능 수행후 이벤트를 날릴수잇다.</li>
+  <li>service에서 기능처리를 하며 이때 EvnetPublisher의 메소드에 넘긴다.</li>
+  <li>ApplicationEventPublisher가 이벤트를 등록한다.</li>
+  <li>@EventListenser 를 사용한 onCustomFileEventHandler()을 통해서 여러가지 이벤트 후 처리를 진행한다.</li>
+</ol>
+
+<h2 id="11-분산환경에서의-메시지-큐-활용">11. 분산환경에서의 메시지 큐 활용</h2>
+
+<ul>
+  <li>파일이벤트 실습의 문제점( 무거운 요청 ) 분산처리과정이 문제가됨</li>
+  <li>
+    <p>이벤트 드리븐 서버가 1대일 때는 실습과정 처럼 하면 되지만</p>
+  </li>
+  <li>무거운 요청이 무지막지 하게 많이 오면 이를 처리하는데만 시간이 소요</li>
+  <li>그렇기 때문에 따라 서버를 두어 메시지 큐를 활용함(카프카.. rabbitMQ)</li>
+</ul>
+
+<p>분산환경에서 효율적인 처리를 위해서 분산과정을 한다.</p>
+
+<p>앤프로 2는 미니배열을 잘보면 보통 키보드에는 꼭있는 깔끔한 미니배열방향키때문에 방향시 사용에대해서 컨트롤 쉬프트 등을 통해서 방향키를 사용할수있습니다. 캡스락을 이용해서 앤프로투는 방향키를 사용할수있게 했습니다.</p>
+
+      <br/>
+      <br/>
+      <!--&lt;!&ndash; 블로그-하단-반응형 &ndash;&gt;-->
+      <!--<ins class="adsbygoogle"-->
+          <!--style="display:block; width:100%; height:300px;"-->
+          <!--data-ad-client="ca-pub-9134477021095729"-->
+          <!--data-ad-slot="2380354290"-->
+          <!--data-ad-format="auto"></ins>-->
+      <!--<script>-->
+      <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+      <!--</script>-->
+    </div>
+    <script>
+
+    </script>
+  
+
+</article>
+
+  <hr class="dingbat" />
+
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=spring cloud study - 1&amp;url=http://localhost:4000/spring/2021/07/12/spring-cloud-1/"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/spring/2021/07/12/spring-cloud-1/"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="elyo"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>(기록하고 개발하고 기록하고 개발하고) x 10000</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/07/19/spring-cloud-4/" data-flip="title">
+    <span>spring cloud study - 4</span>
+  </a>
+  <small><time datetime="2021-07-19T00:00:00+09:00">
+    19 Jul 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/07/19/spring-batch-2/" data-flip="title">
+    <span>security batch-2</span>
+  </a>
+  <small><time datetime="2021-07-19T00:00:00+09:00">
+    19 Jul 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/07/19/spring-batch-1/" data-flip="title">
+    <span>security batch-1</span>
+  </a>
+  <small><time datetime="2021-07-19T00:00:00+09:00">
+    19 Jul 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <div id="disqus_thread"></div>
+
+  <script>
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="spring cloud study - 1",this.page.identifier="/spring/2021/07/12/spring-cloud-1",this.page.url="http://localhost:4000/spring/2021/07/12/spring-cloud-1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//elyo-dev-blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  <!--<div id="disqus_thread"></div>-->
+  <!--<script>-->
+
+      <!--/**-->
+       <!--*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.-->
+       <!--*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/-->
+      <!--/*-->
+      <!--var disqus_config = function () {-->
+      <!--this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable-->
+      <!--this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable-->
+      <!--};-->
+      <!--*/-->
+      <!--(function() { // DON'T EDIT BELOW THIS LINE-->
+          <!--var d = document, s = d.createElement('script');-->
+          <!--s.src = 'https://yoraths-dev-blog.disqus.com/embed.js';-->
+          <!--s.setAttribute('data-timestamp', +new Date());-->
+          <!--(d.head || d.body).appendChild(s);-->
+      <!--})();-->
+  <!--</script>-->
+  <!--<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>-->
+
+
+
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2020. by elyo</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://elyo9381.github.io/">elyo</a></code>
+  </p>
+</footer>
+
+    </main>
+    <!--<div class="right-side">-->
+  <!--<div class="ad-first">-->
+    <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+    <!--&lt;!&ndash; 블로그-상단-모바일 &ndash;&gt;-->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;width:100%;"-->
+         <!--data-ad-client="ca-pub-9134477021095729"-->
+         <!--data-ad-slot="6559875097"-->
+         <!--data-ad-format="auto"></ins>-->
+    <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+  <!--</div>-->
+<!--<br/>-->
+<!--<br/>-->
+  <!--<div class="ad-second">-->
+    <!--&lt;!&ndash; 블로그-스카이스크래퍼 &ndash;&gt;-->
+    <!--<ins class="adsbygoogle"-->
+         <!--style="display:inline-block;max-width:320px;width:100%;height:600px"-->
+         <!--data-ad-client="ca-pub-9134477021095729"-->
+         <!--data-ad-slot="6826803092"></ins>-->
+    <!--<script>-->
+    <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+    <!--</script>-->
+  <!--</div>-->
+<!--</div>-->
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/nap.jpg)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+      <div class="sidebar-about">
+        <h1><a id="_title" href="/">Elyo</a></h1>
+        <p>기록하며 기억하자</p>
+
+      </div>
+
+      <br/>
+      <br/>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/ps/">PS</a>
+       <label class="folder" for="list-item-1">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-jongol/">jongol</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-boj/">boj</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/ps-programers/">programes</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/spring/">Spring</a>
+       <label class="folder" for="list-item-2">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-framework/">FrameWork</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-boot/">Boot</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-security/">Security</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/spring-mvc/">MVC</a>
+             </li>
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/cs/">CS</a>
+       <label class="folder" for="list-item-3">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/cs-os/">OS</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/book/">Book</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about/">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-6"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/tip/">Tip</a>
+       <label class="folder" for="list-item-6">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-git/">Git</a>
+             </li>
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-interview/">Interview</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-resume/">Resume</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+    <br/>
+    <br/>
+      <div class="sidebar-box">
+        
+          
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="elyo"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+        
+      </div>
+      <p>진심을 다해서</p>
+
+      
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/elyo9381">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="mailto:elyo9381@gmail.com">
+    <span class="icon-mail" title="Email"></span>
+    <span class="sr-only">Email</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://elyo9381.github.io/feed.xml">
+    <span class="icon-rss2" title="RSS"></span>
+    <span class="sr-only">RSS</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-121347599-1', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

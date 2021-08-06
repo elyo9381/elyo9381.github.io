@@ -30,7 +30,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="naver-site-verification" content="22c5b4ef3bfda7fc6100671413989219de7a4ac8"/>
-<meta property="og:title" content="mysql on Docker with centos - 1">
+<meta property="og:title" content="security batch-2">
 <meta property="og:type" content="article">
 
 
@@ -45,17 +45,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>mysql on Docker with centos - 1 &middot; Elyo</title>
+  <title>security batch-2 &middot; Elyo</title>
 
 
 
 <meta name="description" content="
-  mySQL on Docker
+  spring study
 
 
 ">
 <meta property="og:description" content="
-  mySQL on Docker
+  spring study
 
 
 ">
@@ -65,17 +65,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/spring/2021/06/01/mysqlOnDocker-1/">
-<meta property="og:url" content="http://localhost:4000/spring/2021/06/01/mysqlOnDocker-1/">
+<link rel="canonical" href="http://localhost:4000/spring/2021/07/19/spring-batch-2/">
+<meta property="og:url" content="http://localhost:4000/spring/2021/07/19/spring-batch-2/">
 
 <link rel="alternate" type="application/atom+xml" title="Elyo Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/spring/2021/05/31/spring-security-concept-5/">
+  <link rel="prev" href="http://localhost:4000/spring/2021/07/19/spring-batch-1/">
 
 
 
-  <link rel="next" href="http://localhost:4000/spring/2021/06/01/refactoring-2/">
+  <link rel="next" href="http://localhost:4000/spring/2021/07/19/spring-cloud-4/">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -162,18 +162,18 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/nap.jpg">
       
 
-<article id="post-spring/2021/06/01/mysqlOnDocker-1" class="post" role="article">
+<article id="post-spring/2021/07/19/spring-batch-2" class="post" role="article">
   <header>
     <h1 class="post-title">
       
-        mysql on Docker with centos - 1
+        security batch-2
       
     </h1>
     
-    <p>spring, security</p>
+    <p>spring, batch</p>
     
     <p class="post-date heading">
-      <time datetime="2021-06-01T00:00:00+09:00">01 Jun 2021</time>
+      <time datetime="2021-07-19T00:00:00+09:00">19 Jul 2021</time>
       
 
 
@@ -225,185 +225,125 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
 <!--</script>-->
 <br/>
       <blockquote>
-  <p>mySQL on Docker</p>
+  <p>spring study</p>
 </blockquote>
 
-<h2 id="container">container</h2>
+<h2 id="spring-batch-task--chunk">spring batch Task &amp; Chunk</h2>
 
-<p>도커에서 mysql 실행</p>
-<ul>
-  <li>docker run -i -t –name db001 -e MYSQL_ROOT_PASSWORD=”root” -d percona:5.7.30</li>
-</ul>
-
-<p>실행된 컨테이너 확인</p>
-<ul>
-  <li>docker ps</li>
-</ul>
-
-<p>컨테이너 접속(execute)</p>
-<ul>
-  <li>docker exec -it db001 /bin/bash</li>
-</ul>
-
-<p>mysql 접속</p>
-<ul>
-  <li>mysql -uroot -p</li>
-</ul>
-
-<p>-i -t : container에 shell 로 접속해서 사용하기 위한 옵션 <br />
-  –name : container의 이름 <br />
-  -e:환경변수 세팅 <br />
-  -d: background mode로 container 실행</p>
-
-<h2 id="외부에서-mysql-접속하기">외부에서 mysql 접속하기</h2>
-
-<p>container 외부에서 Mysql접속하기</p>
-<ul>
-  <li>
-    <p>docker run -i -t –name db001 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=”root” -d percona:5.7.30</p>
-
-    <p>-p 옵셥을 통해서 포트를 설정할수있다.</p>
-  </li>
-</ul>
-
-<p>Mysql 접속하기</p>
-<ul>
-  <li>mysql -uroot -p -h {docker_host_ip}
-  <!-- - mysql -uroot -p -h 172.31.2.88 --></li>
-</ul>
-
-<p>이때 나는 percona-mysql을 사용하였다. 그러므로 이를 들어갈 클라이언트를 등록해야 사용할 수 있다.</p>
-
-<p><code class="highlighter-rouge">Stateless VS Stateful</code></p>
-<ul>
-  <li>container는 언제든지 재 시작 될 수 있다.</li>
-  <li>Docker image만 있으면 언제든지 동일한 구성의 Container를 실행시킬 수 있다.</li>
-  <li>container가 삭제 후 재 생성되면 docker image 초기의 상태로 시작된다.</li>
-  <li>Web server처럼 특정 요청을 받아서 처리해주고 상태값이나 데이터를 갖지 않는 형태의 서비스에 적합 : Stateless</li>
-  <li>하지만, DB는 데이터를 저장.</li>
-  <li>MYSQL Container가 삭제되고 재생성되면 어떻게 될까 ? -&gt; data loss발생</li>
-</ul>
-
-<h2 id="volume-설정">Volume 설정</h2>
-
-<p>### <strong><em>host와 볼륨 공유하기</em></strong></p>
-
-<p>우리는 하나의 서버를 만들었고 이를 마스터로 사용할 것이다.</p>
+<h2 id="1-task--chunk">1. Task &amp; Chunk</h2>
 
 <ul>
-  <li>mkdir -p /db/db001/data</li>
-  <li>mkdir -p /db/db001/log /db/db001/conf</li>
-  <li>chmod 777 /db /db/db001 /db/db001/data</li>
-  <li>chmod -p /db/db001/log /db/db001/conf</li>
-  <li>docker run -i -t –name db003 -p 3308:3306 -v /db/db003/data:/var/lib/mysql -v /db/db003/log:/var/log/mysql -v /db/db003/conf:/etc/percona-server.conf.d -e MYSQL_ROOT_PASSWORD=”root” -d percona:5.7.30</li>
-</ul>
-
-<p>데이터 생성</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  create database testdb default character set=utf8;
-
-  create table t1(id int not null);
-
-  insert into t1 values(1),(2),(3);
-</code></pre>
-</div>
-
-<h2 id="db-replication">DB replication</h2>
-
-<p>슬레이브를 생성한다</p>
-
-<p>외부에서 접근가능하며 호스트에서 데이터공유가능하며 마스터와 데이터 복제를 진행한다.</p>
-
-<ul>
-  <li>mkdir -p /db/db002/data /db/db003/data</li>
-  <li>chmod 777 /db/db002 /db/db002/data</li>
-  <li>chmod 777 /db/db003 /db/db003/data</li>
-  <li>mkdir -p /db/db002/log /db/db002/conf</li>
-  <li>mkdir -p /db/db003/log /db/db003/conf</li>
-  <li>chmod 777 /db/db002/log /db/db002/conf</li>
-  <li>
-    <p>chmod 777 /db/db003/log /db/db003/conf</p>
-  </li>
-  <li>
-    <p>docker run -i -t –name db001 -h db001 -p 3306:3306 -v /db/db001/data:/var/lib/mysql -v /db/db001/log:/var/log/mysql -v /db/db001/conf:/etc/percona-server.conf.d -e MYSQL_ROOT_PASSWORD=”root” -d percona:5.7.30 : mysql 만들기</p>
-  </li>
-  <li>docker ps –format “table \t\t” : 내가 원하는 항목만 볼수있다.</li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>  CREATE USER 'rep1'@'%' IDENTIFIED BY 'rep1';
-
-  GRANT REPLICATION SLAVE ON *.* TO 'rep1'@'%';
-</code></pre>
-</div>
-<p>마스터 컨테이너의 rep1유저 생성(MySQL)</p>
-
-<p>master container의 ip : 172.17.0.3</p>
-
-<p>그후에 db002 컨테이너의 mysql로 들어간다.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>  CHANGE MASTER TO MASTER_HOST='172.17.0.3', MASTER_USER='rep1', MASTER_PASSWORD='rep1', MASTER_AUTO_POSITION=1;
-</code></pre>
-</div>
-
-<p>그후 start slave 명령어를 통해서 slave를 시작하고 show slave status\G 명령어를 통해서 잘 연결되었는지 확인한다.</p>
-
-<h2 id="브릿지-네트워크-구성">브릿지 네트워크 구성</h2>
-<p>컨테이너는 언제든지 재 시작 될 수 있고 컨테이너가 재시작 되면 해당 컨테이너의 IP가 변경될수있습니다.</p>
-
-<p>MYSQL 의 Replication 설정이나 HA 설정에 IP를 사용하게 되면 컨테이너가 재 시작 될 경우 변경된 ip 때문에 replication이 깨질 수 있습니다.</p>
-
-<p>이러한 문제를 방지하기 위해 Brige Network를 구성하고 net alias를 사용하여 ip변경에도 문제가 발생하지 않도록 할 수 있습니다.</p>
-
-<ul>
-  <li>
-    <p>docker network ls : 도커의 네트워크 list를 볼수있는 명령어</p>
-  </li>
-  <li>
-    <p>docker network create –driver bridge mybridge : 브릿지 네트워크생성 명령어</p>
-  </li>
-  <li>
-    <p>docker run -i -t –name db001 -h db001 -p 3306:3306 –net mybridge –net-alias=db001 -v /db/db001/data:/var/lib/mysql -v /db/db001/log:/var/log/mysql -v /db/db001/conf:/etc/percona-server.conf.d -e MYSQL_ROOT_PASSWORD=”root” -d percona:5.7.30</p>
-  </li>
-</ul>
-
-<h2 id="orchestrator">orchestrator</h2>
-
-<p>failOver가 발생했을때 처리하는 방법</p>
-
-<p>slave를 master로 올릴수 있다.</p>
-
-<p>오케스트레이터 컨테이너 실행하기</p>
-<ul>
-  <li>
-    <p>docker run -i -t –name orchestrator -h orchestrator –net mybridge –net-alias=orchestrator -p 3000:3000 -d openarkcode/orchestrator:latest</p>
-  </li>
-  <li>
-    <p>docker inspect –format ‘’ db001 : db001 컨테이너의 ip주소 확인</p>
-  </li>
-</ul>
-
-<p>orchestrator를 사용할 유저생성 (in db001)</p>
-<ul>
-  <li>reate user orc_client_user@’172.%’ identified by’orc_client_password’;</li>
-  <li>grant super,process, replication slave, reload on <em>.</em> to orc_client_user@’172.%’;</li>
-  <li>grant select on mysql.slave_master_info TO orc_client_user@’172.%’;</li>
-</ul>
-
-<p>publicIP:3000/web/cluster 로 들어가면 orchestrator의 웹이 나온다.</p>
-
-<h2 id="hahigh-availability-test">HA(High Availability test)</h2>
-
-<p>시나리오 1</p>
-
-<ul>
-  <li>db001이 정지되어 db002를 마스터로 올립니다.</li>
-  <li>db001은 개별 마스터가 되어 독립적으로 존재합니다.</li>
-  <li>db001을 db002의 slave로 등록시킵니다.
+  <li>배치를 처리할 수 있는 방법은 크게 2가지</li>
+  <li>Tasklet을 사용한 Task 기반처리
     <ul>
-      <li>방법은 set global read_only = 1;</li>
-      <li>CHANGE MASTER TO MASTER_HOST=’db002’, MASTER_USER=’rep1’, MASTER_PASSWORD=’rep1’, MASTER_AUTO_POSITION=1;</li>
-      <li>start slave;</li>
+      <li>배치 처리 과정이 비교적 쉬운 경우 쉽게 사용</li>
+      <li>대량 처리를 하는 경우 더 복잡</li>
+      <li>하나의 큰 덩어리를 여러 덩어리로 나누어 처리하기 부적합</li>
     </ul>
   </li>
+  <li>Chunk를 사용한 chunk 기반 처리
+    <ul>
+      <li>ItemReader, ItemProcessor, ItemWrtier의 관계 이해 필요</li>
+      <li>대량처리를 하는 경우 Tasklet보다 비교적 쉽게 구현</li>
+      <li>예를 들면 10,000개의 데이터 중 1000개씩 10개의 덩어리로 수행
+        <ul>
+          <li>이를 Tasklet으로 처리하면 10000개를 한번에 처리하거나, 수동으로 1000개씩 분할</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2-jobscope-stepscope">2. jobScope, stepScope</h2>
+
+<ul>
+  <li>jobScope는 job이 생성될고 소멸될때의 사이클을 가진다.</li>
+  <li>
+    <p>stepScope도 step이 생성될고 소멸될때의 사이클을 가진다.</p>
+  </li>
+  <li>이들은 빈자체가 생성주기를 갖게 되고 범위를 가지게 되면서 스레드 세잎 해진다.</li>
+</ul>
+
+<h2 id="3-itemreader">3. ItemReader</h2>
+
+<ul>
+  <li>배치 대상 데이터를 읽기 위한 설정
+    <ul>
+      <li>파일,DB,네트워크 등에서 읽기 위함</li>
+    </ul>
+  </li>
+  <li>step에 itemReader는 필수</li>
+  <li>기본제공되는 ItemReader 구현체
+    <ul>
+      <li>file,jdbc,jpa,hibernate,kafka</li>
+    </ul>
+  </li>
+  <li>ItemReader 구현체가 없으면 직접개발</li>
+  <li>ItemStream은 ExecutionContext로 read, write정보를 저장</li>
+  <li>CustomItemReader예제 참고</li>
+</ul>
+
+<h2 id="4-itemwriter">4. ItemWriter</h2>
+
+<ul>
+  <li>ItemWriter 구현체가 없으면 직접개발</li>
+  <li>csv, jdbc, jpa등이 사용됨</li>
+  <li>jdbc
+    <ul>
+      <li>JdbcBatchItemWriter를 이용해 insert/update/delete가능</li>
+      <li>단건 처리가 아니기 때문에 비교적 높은 성능</li>
+    </ul>
+  </li>
+  <li>jpa
+    <div class="highlighter-rouge"><pre class="highlight"><code>@Bean
+public Step jpaItemWriterStep() throws Exception {
+    return stepBuilderFactory.get("jpaItemWriterStep")
+            .&lt;Person, Person&gt;chunk(10)
+            .reader(itemReader())
+            .writer(jpaItemWriter())
+            .build();
+}
+
+private ItemWriter&lt;Person&gt; jpaItemWriter() throws Exception {
+    JpaItemWriter&lt;Person&gt; itemWriter = new JpaItemWriterBuilder&lt;Person&gt;()
+            .entityManagerFactory(entityManagerFactory)
+          //.usePersist(true)
+            .build();
+
+    itemWriter.afterPropertiesSet();
+    return itemWriter;
+}
+</code></pre>
+    </div>
+
+    <p>jpaItemWriter는 위와같이 실행된다.</p>
+
+    <p>JPA는 변경감지가 되면 merge를 진행하는데 이를 방지하기 위한 메소드가 .usePersist이다.</p>
+
+    <p>itemReader값을 가져오고 이 데이터가 id 혹은 변경감지 대상이 되지 않는다면 .usePersist를 사용하지 않아도 되긴한다.</p>
+  </li>
+</ul>
+
+<h2 id="5-itemprocessor">5. ItemProcessor</h2>
+
+<ul>
+  <li>itemReader, itemWriter 의 기능을 할수있지만 명확한 책임을 부여하기 위해서 각각의 기능을 수행하는것이 좋다.</li>
+  <li>
+    <p>ItemProcessor는 추가적인 필터링 기능을 수행함이 좋다.</p>
+  </li>
+  <li>CompositeItemProcessorBuilder()를 통해서 여러개의 processor를 사용할 수 있다.
+    <ul>
+      <li>delegates(param1, param2,..) 등을 통해서 여러개의 함수를 사용한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="6-itemwriter">6. ItemWriter</h2>
+
+<ul>
+  <li>ItemReader()가 CSV 파일을 읽었을때</li>
+  <li>JpaWriterBuilder()를 통해서 Writer를 생성할수있다.</li>
+  <li>그리고 entityManagerFactory()로 영속화 한다음 Jpa에 넣을수있는것이다.</li>
 </ul>
 
       <br/>
@@ -430,12 +370,12 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
   <div class="share">
       <h2>Share this post</h2>
       <div class="share-body">
-        <a href="http://twitter.com/share?text=mysql on Docker with centos - 1&amp;url=http://localhost:4000/spring/2021/06/01/mysqlOnDocker-1/"
+        <a href="http://twitter.com/share?text=security batch-2&amp;url=http://localhost:4000/spring/2021/07/19/spring-batch-2/"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
             <span class="icon-twitter">
             </span>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/spring/2021/06/01/mysqlOnDocker-1/"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/spring/2021/07/19/spring-batch-2/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
             <span class="icon-facebook">
             </span>
@@ -498,11 +438,30 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
 
 
 <li class="h4">
-  <a href="/spring/2021/06/10/refactoring-3/" data-flip="title">
-    <span>리팩터링 리뷰 - 2</span>
+  <a href="/spring/2021/07/19/spring-cloud-4/" data-flip="title">
+    <span>spring cloud study - 4</span>
   </a>
-  <small><time datetime="2021-06-10T00:00:00+09:00">
-    10 Jun 2021
+  <small><time datetime="2021-07-19T00:00:00+09:00">
+    19 Jul 2021
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/spring/2021/07/19/spring-batch-1/" data-flip="title">
+    <span>security batch-1</span>
+  </a>
+  <small><time datetime="2021-07-19T00:00:00+09:00">
+    19 Jul 2021
   </time></small>
 </li>
 
@@ -514,33 +473,14 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
 
 
 <li class="h4">
-  <a href="/spring/2021/06/03/mysqlOnDocker-2/" data-flip="title">
-    <span>mysql on Docker with centos - 2</span>
+  <a href="/spring/2021/07/17/refactoring-8/" data-flip="title">
+    <span>리팩터링 리뷰 - 8</span>
   </a>
-  <small><time datetime="2021-06-03T00:00:00+09:00">
-    03 Jun 2021
+  <small><time datetime="2021-07-17T00:00:00+09:00">
+    17 Jul 2021
   </time></small>
 </li>
 
-        
-      
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/spring/2021/06/02/spring-batch-1/" data-flip="title">
-    <span>security batch</span>
-  </a>
-  <small><time datetime="2021-06-02T00:00:00+09:00">
-    02 Jun 2021
-  </time></small>
-</li>
-
-        
-      
-        
         
       
     
@@ -557,7 +497,7 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
   <div id="disqus_thread"></div>
 
   <script>
-    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="mysql on Docker with centos - 1",this.page.identifier="/spring/2021/06/01/mysqlOnDocker-1",this.page.url="http://localhost:4000/spring/2021/06/01/mysqlOnDocker-1/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//elyo-dev-blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
+    !function(s,i){function e(e){var t=s.pageYOffset||i.body.scrollTop;s.DISQUS&&!s._disqusThis&&!s._disqusFirst&&t+s.innerHeight>=s._disqusThreadOffsetTop&&(s._disqusThis=!0,s.DISQUS.reset({reload:!0,config:d}))}var d=function(){this.page.title="security batch-2",this.page.identifier="/spring/2021/07/19/spring-batch-2",this.page.url="http://localhost:4000/spring/2021/07/19/spring-batch-2/"};s._disqusFirst=void 0===s._disqusFirst||s._disqusFirst,s._disqusLoading=void 0!==s._disqusLoading&&s._disqusLoading,s._disqusThis=!1,s._disqusThreadOffsetTop=i.getElementById("disqus_thread").offsetTop,s._disqusLoading?s._disqusFirst=!1:(s._disqusLoading=!0,loadJSDeferred("//elyo-dev-blog.disqus.com/embed.js"),s.addEventListener?s.addEventListener("scroll",e,{passive:!0}):s.attachEvent?s.attachEvent("onscroll",e):s.onscroll=e)}(window,document);
 
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
@@ -698,6 +638,8 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -751,6 +693,8 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -780,6 +724,8 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
              <li>
                <a class="sidebar-nav-subitem" href="/tag/cs-os/">OS</a>
              </li>
+           
+         
            
          
            
@@ -829,6 +775,8 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -842,6 +790,8 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            
@@ -908,6 +858,12 @@ on <a href="/tag/spring-security/" data-flip="title">Security</a>
            
              <li>
                <a class="sidebar-nav-subitem" href="/tag/tip-interview/">Interview</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-resume/">Resume</a>
              </li>
            
          

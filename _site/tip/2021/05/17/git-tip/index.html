@@ -330,10 +330,30 @@ FastForward : B 브랜치를 마스터에 병합할때 마스터가 B 브런치�
 </div>
 
 <h2 id="git-stash">git stash</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>- 작업이 끝나지 않았을때 다른 브랜치로 이동해서 급하게 일을 수행하는경우 사용한다. 
-- 브랜치를 특정 공간에 숨길수있다. 그리고 새로운 업무를 진행하고 다시 숨긴 브랜치를 사용할수있는것이다. 
-</code></pre>
-</div>
+<p>### 브랜치 이용</p>
+<ol>
+  <li>브랜치1에서 일단 (임시) 커밋을 한다.</li>
+  <li>브랜치2로 체크아웃하고 볼일을 본다…</li>
+  <li>다시 브랜치1로 되돌아 온다.</li>
+  <li>1의 작업을 이어서 마루리 짓는다.</li>
+  <li>커밋 덮어쓰기(commit –amend)를 한다.</li>
+  <li>(옵션) 필요하다면 (push –force)를 한다.</li>
+</ol>
+
+<p>### stash 이용</p>
+<ul>
+  <li>작업이 끝나지 않았을때 다른 브랜치로 이동해서 급하게 일을 수행하는경우 사용한다.</li>
+  <li>브랜치를 특정 공간에 숨길수있다. 그리고 새로운 업무를 진행하고 다시 숨긴 브랜치를 사용할수있는것이다.
+    <ol>
+      <li>Stash를 만든다.</li>
+      <li>이 때 새로운 파일이 있었다면 일단 인덱스에 추가한다.</li>
+      <li>체크아웃한다.</li>
+      <li>되돌아온다.</li>
+      <li>Stash를 pop한다.</li>
+      <li>보통 커밋을 새로 생성한다.</li>
+    </ol>
+  </li>
+</ul>
 
 <h2 id="git-branch-의-원리">git branch 의 원리</h2>
 <div class="highlighter-rouge"><pre class="highlight"><code>- git을 init하면 head 파일이 생성된다. 
@@ -366,7 +386,12 @@ FastForward : B 브랜치를 마스터에 병합할때 마스터가 B 브런치�
 </div>
 
 <h2 id="git-reset-checkout-원리">git reset checkout 원리</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>- git reset --hard 커밋id : HEAD이 커밋ID를 보게 되고 이는 최신커밋ID 바꾸는 행위이다. 
+<div class="highlighter-rouge"><pre class="highlight"><code>- 리셋을 하면 단점이 2가지 존재한다. 
+  - 커밋이 모두 사라진다는 점이다.
+  - 또한 강제푸시가 필요하다. 계속 리셋을하면 계속 충돌이 일어나므로 강제푸시가 계속 필요하다. 
+  - 이럴땐 먼저 merge한다 -&gt; 그러면 conflict가 일어날것이고 이를 해결하고 푸시 한다. 
+  - rebase를 만들면 더 잘된다. 
+- git reset --hard 커밋id : HEAD이 커밋ID를 보게 되고 이는 최신커밋ID 바꾸는 행위이다. 
 - git은 rest을 하여도 삭제된것은 아니다. resert을 취소할수도 있기 떄문이다. 
 
 - git log --hard ORIG_HEAD : reset을 취소할수있다. 
@@ -387,6 +412,31 @@ FastForward : B 브랜치를 마스터에 병합할때 마스터가 B 브런치�
 - ORIG_HEAD : reset을 취소할때도 hard, soft, mixed를 설정해야한다.
 </code></pre>
 </div>
+
+<h2 id="revert-방법">revert 방법</h2>
+
+<ul>
+  <li>커밋을 하나 더 생성해서 되돌린다.</li>
+  <li>선택한 커밋을 되돌리는것이다.</li>
+  <li>git revert C3(commit id -되돌리고자 하는 커밋 아이디-)</li>
+  <li>
+    <p>이렇게 하면 커밋을 하나 더 생성하지만 이전과 c3 이전의 커밋메세지로 되돌린 커밋을 생성하게 되는것이다.</p>
+  </li>
+  <li>여러가지 revert를 하는 방법
+    <ul>
+      <li>되돌리기를 두단계로 나눠서 하는 방법
+        <ul>
+          <li>최신부터 순서대로 revert를 반복 적용하면 됩니다.</li>
+          <li>git revert HEAD HEAD~1
+            <ul>
+              <li>HEAD HEAD~1 헤드부터 헤드의부모의 순서까지 revert하는것이다.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="conflict-원리">conflict 원리</h2>
 <div class="highlighter-rouge"><pre class="highlight"><code>- 3way merge 를 통해서 오토 커밋이 가능하다. 
@@ -465,14 +515,22 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
 </div>
 
 <h2 id="git-rebase">git rebase</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>-rebase : 소스코드를 병합하는 하나의 방법이다.
-  1. merge 병렬적으로 병합하지만 rebase는 임시저장소를 이용해 직렬적으로 병합한다. 
-  2. 공통 base를 토대로 브런치를 직렬화하면서 병합한다. 
-
-- git rebase branchName
-- git rebase continue
-</code></pre>
-</div>
+<ul>
+  <li>rebase : 소스코드를 병합하는 하나의 방법이다.
+    <ol>
+      <li>merge 병렬적으로 병합하지만 rebase는 임시저장소를 이용해 직렬적으로 병합한다.</li>
+      <li>공통 base를 토대로 브런치를 직렬화하면서 병합한다.
+        <ul>
+          <li>merge 처럼 두 브랜치를 합칠 때 사용합니다.</li>
+          <li>현재 브랜치가 대상 브랜치 위로 올라갑니다.</li>
+          <li>위험하니 조심스레 사용하자.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>git rebase branchName</li>
+  <li>git rebase continue</li>
+</ul>
 
 
       <br/>
@@ -567,6 +625,38 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
 
 
 <li class="h4">
+  <a href="/tip/2021/08/04/resume/" data-flip="title">
+    <span>resume</span>
+  </a>
+  <small><time datetime="2021-08-04T00:00:00+09:00">
+    04 Aug 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/tip/2021/08/04/jenkins/" data-flip="title">
+    <span>jenkins 간단 사용법</span>
+  </a>
+  <small><time datetime="2021-08-04T00:00:00+09:00">
+    04 Aug 2021
+  </time></small>
+</li>
+
+        
+      
+        
+        
+          
+
+
+<li class="h4">
   <a href="/tip/2021/06/07/interview-question/" data-flip="title">
     <span>면접 질문 & 나의 프로젝트 간단 요약</span>
   </a>
@@ -580,22 +670,6 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
         
           
           
-        
-        
-          
-
-
-<li class="h4">
-  <a href="/tip/2021/05/02/javaInterviewQuestion/" data-flip="title">
-    <span>면접 질문 리스트 & 답변</span>
-  </a>
-  <small><time datetime="2021-05-02T00:00:00+09:00">
-    02 May 2021
-  </time></small>
-</li>
-
-        
-      
     
   </ul>
 </aside>
@@ -751,6 +825,8 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -804,6 +880,8 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -833,6 +911,8 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
              <li>
                <a class="sidebar-nav-subitem" href="/tag/cs-os/">OS</a>
              </li>
+           
+         
            
          
            
@@ -882,6 +962,8 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
          
            
          
+           
+         
      </ul>
     </li>
 
@@ -895,6 +977,8 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
     </div>
      <ul class="list-body">
        
+           
+         
            
          
            
@@ -961,6 +1045,12 @@ tab : 특정 커밋을 사용자가 다운로드하거나 기억할수있도록 
            
              <li>
                <a class="sidebar-nav-subitem" href="/tag/tip-interview/">Interview</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/tip-resume/">Resume</a>
              </li>
            
          

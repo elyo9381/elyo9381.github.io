@@ -2,8 +2,8 @@
 layout: post
 title: mysql on Docker with centos - 1
 subtitle: "spring, security"
-categories: spring
-tags: security
+categories: db
+tags: mysql
 comments: true
 ---
 > mySQL on Docker 
